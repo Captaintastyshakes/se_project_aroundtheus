@@ -1,7 +1,8 @@
 .profile {
     display: flex;
-    flex-direction: row;
-    max-width: 880px;
+    flex-direction: row;   
+    justify-content: start;    
+    width: 880px;    
     max-height: 120px;
     color: #fff;
 }
@@ -9,6 +10,7 @@
 .profile__avatar {
     max-width: 120px;
     max-height: 120px;
+    justify-self: start;
 }
 
 .profile__name {
@@ -23,7 +25,8 @@
 .profile__info {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start;    
     max-width: 415px;
     max-height: 77px;
 }
@@ -35,6 +38,8 @@
     line-height: 48px;
     letter-spacing: 0em;
     text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .profile__edit-button {
@@ -43,9 +48,13 @@
     border-style: solid;
     border-width: 1px;
     border-color: #fff;
+    align-self: center;
 }
 
 .profile__occupation {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
     font-family: Inter;
     font-size: 18px;
     font-weight: 400;
@@ -60,9 +69,9 @@
     border-style: solid;
     border-width: 2px;
     border-color: #fff;
-    display: flex;
-    justify-content: center; 
-
+    display: flex; 
+    margin-left: auto;  
+    align-self: center;      
 }
 
 .profile__add-button_logo {
