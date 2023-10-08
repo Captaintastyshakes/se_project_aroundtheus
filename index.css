@@ -1,0 +1,632 @@
+/* MAIN PAGE */
+
+@import url(/blocks/page.css);
+@import url(/blocks/header.css);
+@import url(/blocks/profile.css);
+
+
+/* Footer */
+
+position: absolute;
+width: 318px;
+height: 18px;
+left: 200px;
+top: 1139px;
+
+
+
+/* © 2022 Around The U.S. */
+
+position: absolute;
+width: 318px;
+height: 18px;
+left: 200px;
+top: 1139px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+
+color: #545454;
+
+
+
+/* Elements */
+
+position: absolute;
+width: 880px;
+height: 742px;
+left: 200px;
+top: 330px;
+
+
+
+/* Element */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 200px;
+top: 330px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 200px;
+top: 330px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Yosemite Valley */
+
+position: absolute;
+width: 193px;
+height: 29px;
+left: 220px;
+top: 637px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* yosemite-valley */
+
+position: absolute;
+width: 282px;
+height: 282px;
+left: 200px;
+top: 330px;
+
+background: url(card__image.jpg);
+border-radius: 10px 10px 0px 0px;
+
+
+/* Group */
+
+position: absolute;
+left: 34.45%;
+right: 63.91%;
+top: 52.83%;
+bottom: 45.69%;
+
+
+
+/* Vector */
+
+position: absolute;
+height: 18px;
+left: 34.45%;
+right: 63.91%;
+top: 643px;
+
+background: #000000;
+
+
+/* Element */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 499px;
+top: 330px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 499px;
+top: 330px;
+
+background: #FFFFFF;
+box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+border-radius: 10px;
+
+
+/* Vector */
+
+position: absolute;
+height: 18px;
+left: 57.81%;
+right: 40.55%;
+top: 643px;
+
+background: #000000;
+
+
+/* Lake Louise */
+
+position: absolute;
+width: 142px;
+height: 29px;
+left: 519px;
+top: 637px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* lake-louise */
+
+position: absolute;
+width: 282px;
+height: 282px;
+left: 781px;
+top: 330px;
+
+background: url(card__image-lake.jpg);
+border-radius: 10px 10px 0px 0px;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Element */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 798px;
+top: 330px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 798px;
+top: 330px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Bald Mountains */
+
+position: absolute;
+width: 187px;
+height: 29px;
+left: 818px;
+top: 637px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Vector */
+
+position: absolute;
+height: 18px;
+left: 81.17%;
+right: 17.19%;
+top: 643px;
+
+background: #000000;
+
+
+/* bald-mountains */
+
+position: absolute;
+width: 282px;
+height: 282px;
+left: 798px;
+top: 330px;
+
+background: url(card__image-smoky.jpg);
+border-radius: 10px 10px 0px 0px;
+
+
+/* Element */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 798px;
+top: 711px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 798px;
+top: 711px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Vector */
+
+position: absolute;
+height: 18px;
+left: 81.17%;
+right: 17.19%;
+top: 1024px;
+
+background: #000000;
+
+
+/* Lago di Braies */
+
+position: absolute;
+width: 167px;
+height: 29px;
+left: 818px;
+top: 1018px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* lago-di-braies */
+
+position: absolute;
+width: 282px;
+height: 282px;
+left: 798px;
+top: 711px;
+
+background: url(card__image-lago.jpg);
+border-radius: 10px 10px 0px 0px;
+
+
+/* Element */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 200px;
+top: 711px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 200px;
+top: 711px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Vector */
+
+position: absolute;
+height: 18px;
+left: 34.45%;
+right: 63.91%;
+top: 1024px;
+
+background: #000000;
+
+
+/* Latemar */
+
+position: absolute;
+width: 100px;
+height: 29px;
+left: 220px;
+top: 1018px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* latemar */
+
+position: absolute;
+width: 282px;
+height: 282px;
+left: 482px;
+top: 711px;
+
+background: url(card__image-latemar.jpg);
+border-radius: 10px 10px 0px 0px;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Element */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 499px;
+top: 711px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+width: 282px;
+height: 361px;
+left: 499px;
+top: 711px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Vector */
+
+position: absolute;
+height: 18px;
+left: 57.81%;
+right: 40.55%;
+top: 1025px;
+
+background: #000000;
+
+
+/* Vanoise Nationa... */
+
+position: absolute;
+width: 219px;
+height: 29px;
+left: 519px;
+top: 1018px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* vanoise-national-park */
+
+position: absolute;
+width: 282px;
+height: 282px;
+left: 499px;
+top: 711px;
+
+background: url(card__image-vanoise.jpg);
+border-radius: 10px 10px 0px 0px;
+
+
+/* Profile */
+
+position: absolute;
+width: 880px;
+height: 120px;
+left: 200px;
+top: 159px;
+
+
+
+/* Add Button */
+
+position: absolute;
+width: 150px;
+height: 50px;
+left: 930px;
+top: 194px;
+
+
+
+/* Rectangle */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 150px;
+height: 50px;
+left: 930px;
+top: 194px;
+
+border: 2px solid #FFFFFF;
+border-radius: 2px;
+
+
+/* Vector */
+
+position: absolute;
+height: 22px;
+left: 77.66%;
+right: 20.62%;
+top: 208px;
+
+background: #FFFFFF;
+
+
+/* Profile Info */
+
+position: absolute;
+width: 415px;
+height: 77px;
+left: 350px;
+top: 181px;
+
+
+
+/* Jacques Cousteau */
+
+position: absolute;
+width: 373px;
+height: 48px;
+left: 350px;
+top: 181px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 42px;
+line-height: 48px;
+/* identical to box height, or 114% */
+
+color: #FFFFFF;
+
+
+
+/* Explorer */
+
+position: absolute;
+width: 415px;
+height: 22px;
+left: 350px;
+top: 236px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Edit Button */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 741px;
+top: 196px;
+
+
+
+/* Rectangle */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 741px;
+top: 196px;
+
+border: 1px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 58.44%;
+right: 40.78%;
+top: 16.68%;
+bottom: 82.5%;
+
+background: #FFFFFF;
+
+
+/* Avatar */
+
+position: absolute;
+width: 120px;
+height: 120px;
+left: 200px;
+top: 159px;
+
+
+
+/* Ellipse */
+
+position: absolute;
+width: 120px;
+height: 120px;
+left: 200px;
+top: 159px;
+
+background: #C4C4C4;
+
+
+/* jacques-cousteau */
+
+position: absolute;
+width: 168.75px;
+height: 127.5px;
+left: 177.5px;
+top: 155.25px;
+
+background: url(image);
+
+
+/* Header */
+
+position: absolute;
+width: 880px;
+height: 74px;
+left: 200px;
+top: 45px;
+
+
+
+/* Line */
+
+position: absolute;
+width: 880px;
+height: 0px;
+left: 200px;
+top: 119px;
+
+opacity: 0.7;
+border: 1px solid #545454;
+
+
+/* Vector */
+
+position: absolute;
+width: 173px;
+height: 33px;
+left: 200px;
+top: 45px;
+
+background: #FFFFFF;
