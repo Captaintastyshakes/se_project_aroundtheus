@@ -2,3 +2,10 @@
     width: 282px;
     height: 361px;
 }
+
+.card__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+}

@@ -1,5 +1,8 @@
 .content {
     width: 880px;
     width: 742px;
-    display: grid;    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+        
 }
