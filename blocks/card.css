@@ -9,3 +9,14 @@
     justify-content: space-between;
     background-color: white;
 }
+
+.card__content_like-button {
+    width: 21px;
+    height: 18px;
+    transition: opacity 1s;
+    opacity: 100%;
+}
+
+.card__content_like-button:hover {
+    opacity: 60%;
+}

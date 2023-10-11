@@ -49,6 +49,12 @@
     border-width: 1px;
     border-color: #fff;
     align-self: center;
+    transition: opacity 1s;
+    opacity: 100%;
+}
+
+.profile__edit_button {
+    opacity: 60%;
 }
 
 .profile__occupation {
@@ -71,7 +77,13 @@
     border-color: #fff;
     display: flex; 
     margin-left: auto;  
-    align-self: center;      
+    align-self: center;   
+    transition: opacity 1s;   
+    opacity: 100%;
+}
+
+.profile__add-button:hover {
+    opacity: 60%;
 }
 
 .profile__add-button_logo {
