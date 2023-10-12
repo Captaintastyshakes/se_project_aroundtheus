@@ -4,3 +4,14 @@
     align-content: flex-start;
     width: 884px;
 }
+
+@media screen and (max-width: 320px) {
+    .main {
+        width: 320px;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+}
+    
+    
