@@ -11,7 +11,7 @@ Around The U.S.
   
 **Intro**
   
-This project is a kind of social media repositry prototype that displays a profile and accompanying grid of pictures that users can like, all framed as part of a pseudo-journalistic, "journey across the U.S."; it's made so all the elements are displayed correctly on popular screen sizes. (I.E. the grid shrinks to a single column to better fit mobile devices and some of the header content collapses into a centered column). This site currently displays properly/adapts to average monitors and the smallest phone resolutions.
+This project is a kind of social media repository prototype that displays a profile and accompanying grid of pictures that users can like, all framed as part of a pseudo-journalistic, "journey across the U.S."; it's made so all the elements are displayed correctly on popular screen sizes. (I.E. the grid shrinks to a single column to better fit mobile devices and some of the header content collapses into a centered column). This site currently displays properly/adapts to average monitors and the smallest phone resolutions.
   
 **Figma** was an important layout technology used to block and plan the project. The implementation of **grids** and **media inquiries** were crucial in getting a proper responsive design.  
   
