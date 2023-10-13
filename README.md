@@ -21,6 +21,6 @@ This project is a kind of social media repository prototype that displays a prof
 
 **Future ideas** would primarily revolve around expanding the responsiveness of the site to a wider variety of screen sizes to ensure a consistent smooth experience across devices.
 
-https://captaintastyshakes.github.io/se_project_aroundtheus/index.html 
-
+https://ca
+ptaintastyshakes.github.io/se_project_aroundtheus/index.html 
 -MJ
