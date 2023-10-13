@@ -61,6 +61,7 @@
     letter-spacing: 0em;
     text-align: left;
     max-width: 219px;
+    object-fit: contain;
 }
 
 .card__content_like-button {
