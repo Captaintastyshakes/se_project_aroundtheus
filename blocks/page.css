@@ -1,12 +1,12 @@
 .page {    
-    max-width: 1280px;
-    width: 100vw;
+    max-width: 1280px;    
+    overflow-x: hidden;
     /*height: 100%;*/
-    max-height: 1217px;
+    /*max-height: 1217px;*/
     background: #000000;
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
+    justify-content: center;
     /*align-items: center;*/
     /*margin-left: auto;
     margin-right: auto;*/
@@ -19,7 +19,7 @@
 @media screen and (max-width: 320px) {
     .page {            
         width: 320px;   
-        height: 100%;     
+        /*height: 100%;*/     
         padding-top: 28px;
         padding-bottom: 30px;
     }

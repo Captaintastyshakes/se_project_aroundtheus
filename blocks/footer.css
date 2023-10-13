@@ -10,6 +10,7 @@
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
+    padding-top: 67px;
 }
 
 @media screen and (max-width: 320px) {
@@ -20,6 +21,8 @@
         line-height: 17px;
         letter-spacing: 0em;
         text-align: left;
+        padding-left: 19px;
+        padding-right: 19px;
     }
 
 
