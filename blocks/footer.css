@@ -1,8 +1,7 @@
 .footer {
     display: flex;
     flex-direction: row;
-    justify-content: start;
-    /*width: 100%;*/
+    justify-content: start;  
     color: #545454;
     font-family: Inter;
     font-size: 18px;

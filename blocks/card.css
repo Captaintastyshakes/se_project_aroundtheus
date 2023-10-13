@@ -8,9 +8,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    /*object-fit: contain;*/
-    /*object-position: center;*/
+    justify-content: flex-end;    
 }
 
 .card__location_yosemite {
@@ -77,14 +75,3 @@
 .card__content_like-button:hover {
     opacity: 60%;
 }
-
-/*@media screen and (max-width: 320px) {
-    .card__content {
-        font-family: Inter;
-        font-size: 24px;
-        font-weight: 900;
-        line-height: 29px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-} is this even necessary? */
