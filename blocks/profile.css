@@ -25,6 +25,8 @@
     letter-spacing: 0em;
     text-align: left;
     padding-right: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .profile__info {
@@ -34,17 +36,6 @@
     justify-content: flex-start;
     max-width: 415px;
     max-height: 77px;
-}
-
-.profile__name {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-size: 42px;
-    font-weight: 500;
-    line-height: 48px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 .profile__edit-button {
@@ -147,6 +138,7 @@
         align-self: center;
         margin-left: 0;
         margin-right: 0;
+        object-fit: none;
         
     }
 }
