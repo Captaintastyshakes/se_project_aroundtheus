@@ -11,7 +11,7 @@
 
 .cards__card {
     width: 100%;   
-    min-height: 361px;
+    height: 361px;
     border-radius: 5px;    
     overflow: hidden;
     display: flex;
@@ -19,46 +19,10 @@
     justify-content: flex-end;    
 }
 
-.cards__card_location_yosemite {
-    background-image: url(../images/yosemite.jpg);    
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.cards__card_location_lake-louise {
-    background-image: url(../images/lake-louise.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;   
-}
-
-.cards__card_location_bald-mountains {
-    background-image: url(../images/bald-mountains.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.cards__card_location_latemar {
-    background-image: url(../images/latemar.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.cards__card_location_vanoise {
-    background-image: url(../images/vanoise.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.cards__card_location_lago {
-    background-image: url(../images/lago.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.cards__image {    
+    object-fit: cover;
+    object-position: center;            
+    height: 100%;
 }
 
 .cards__content {
@@ -70,11 +34,10 @@
     font-size: 24px;
     font-weight: 900;
     line-height: 29px;
-    letter-spacing: 0em;
-    overflow: hidden;
+    letter-spacing: 0em;    
 }
 
-.cards__content_title {
+.cards__title {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-size: 24px;
     font-weight: 900;
@@ -84,20 +47,26 @@
     max-width: 219px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;    
+    overflow: hidden;
+    padding-left: 10px;
 }
 
-.cards__content_like-button {
+.cards__like-button {
     width: 21px;
     height: 18px;
     transition: opacity 1s;
     align-self: center;
     opacity: 100%;
-    padding-right: 30px;    
+    margin-right: 30px;    
     cursor: pointer;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+    background: none;
 }
 
-.cards__content_like-button:hover {
+.cards__like-button:hover {
     opacity: 60%;    
 }
 
