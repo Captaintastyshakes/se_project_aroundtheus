@@ -10,9 +10,13 @@
     padding-bottom: 45px;
 }
 
+/** {
+    border: solid 1px red;
+}*/
+
 @media screen and (max-width: 320px) {
     .page {            
-        width: 320px;
+        width: 100%;
         padding-top: 28px;
         padding-bottom: 30px;
     }

@@ -32,9 +32,8 @@
 .profile__info {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    max-width: 415px;
+    flex-wrap: wrap;    
+    max-width: 100%;
     max-height: 77px;
 }
 
@@ -44,10 +43,12 @@
     align-self: center;
     transition: opacity 1s;
     opacity: 100%;
+    cursor: pointer;
 }
 
 .profile__edit-button:hover {
     opacity: 60%;
+    
 }
 
 .profile__occupation {
@@ -72,10 +73,12 @@
     margin-left: auto;
     transition: opacity 1s;
     opacity: 100%;
+    cursor: pointer;
 }
 
 .profile__add-button:hover {
     opacity: 60%;
+    
 }
 
 .profile__add-button_logo {
@@ -108,12 +111,9 @@
         row-gap: 14px;
     }
 
-    .profile__name {
-        font-family: 'Inter', Arial, Helvetica, sans-serif;
-        font-size: 22px;
-        font-weight: 500;
-        line-height: 27px;
-        letter-spacing: 0em;
+    .profile__name {        
+        font-size: 22px;        
+        line-height: 27px;        
         text-align: center;
     }
 
@@ -122,19 +122,15 @@
         height: 18px;
     }
 
-    .profile__occupation {
-        font-family: 'Inter', Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 17px;
-        letter-spacing: 0em;
+    .profile__occupation {        
+        font-size: 14px;        
+        line-height: 17px;        
         text-align: center;
         padding-bottom: 32px;
     }
 
     .profile__add-button {
-        width: 100%;
-        height: 50px;
+        width: 100%;        
         align-self: center;
         margin-left: 0;
         margin-right: 0;
