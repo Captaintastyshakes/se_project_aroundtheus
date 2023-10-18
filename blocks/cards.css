@@ -1,5 +1,6 @@
 .cards {
-    width: 100%;        
+    width: 100%; 
+    /*min-width: 290px;*/       
     display: grid;
     border-radius: 5px;
     grid-template-columns: repeat(3, 1fr);
@@ -70,7 +71,8 @@
     opacity: 60%;    
 }
 
-@media screen and (max-width: 320px) {
+/*old resolution 320->890*/
+@media screen and (max-width: 890px) {
     .cards {        
         height: auto;
         grid-template-columns: 100%;

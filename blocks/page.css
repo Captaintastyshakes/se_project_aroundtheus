@@ -10,10 +10,12 @@
     padding-bottom: 45px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 890px) {
     .page {            
         width: 100%;
         padding-top: 28px;
         padding-bottom: 30px;
     }
 }
+
+

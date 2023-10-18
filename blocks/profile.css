@@ -4,8 +4,8 @@
     column-gap: 30px;
     row-gap: 7px;
     justify-content: start;
-    align-items: center;
-    width: 880px;
+    align-items: center;    
+    max-width: 880px;
     color: #fff;
     padding-top: 40px;
     padding-bottom: 51px;
@@ -48,8 +48,6 @@
     border: none;
     padding: 0;
 }
-
-.profile__edit-image {}
 
 .profile__edit-button:hover {
     opacity: 60%;
@@ -97,7 +95,7 @@
     border-style: none;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 890px) {
     .profile {
         width: 100%;
         flex-direction: column;
