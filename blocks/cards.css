@@ -47,7 +47,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    padding-left: 10px;
+    padding-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .cards__like-button {

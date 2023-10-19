@@ -21,13 +21,10 @@
         padding-right: 0;        
     }
 }
-
-@media screen and (max-width: 320px) {
+/*@media screen and (max-width: 320px) {
     .page {
         padding-left: 19px;
         padding-right: 19px;
     }
 
-}
-
-
+}*/
