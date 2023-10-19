@@ -7,11 +7,18 @@
 
 @media screen and (max-width: 890px) {
     .main {
-        width: 100%;        
+        width: 280px;              
         padding-left: 19px;
         padding-right: 19px;
     }
 
+}
+
+@media screen and (max-width: 340px) {
+    .main {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
     
     
