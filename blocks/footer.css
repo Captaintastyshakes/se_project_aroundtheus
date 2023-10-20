@@ -9,7 +9,7 @@
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-    padding-top: 67px;    
+    padding-top: 67px;
     width: 100%;
     max-width: 880px;
 }
@@ -23,8 +23,8 @@
 
 @media screen and (max-width: 890px) {
     .footer {        
-        font-size: 14px;        
-        line-height: 17px;                
+        font-size: 14px;
+        line-height: 17px;
         padding-left: 19px;
         padding-right: 19px;
         padding-top: 48px;
