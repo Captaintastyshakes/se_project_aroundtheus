@@ -3,6 +3,7 @@
     flex-direction: row;
     column-gap: 30px;
     row-gap: 7px;
+    column-gap: 32px;
     justify-content: start;
     align-items: center;    
     max-width: 880px;
@@ -48,7 +49,8 @@
     opacity: 100%;
     cursor: pointer;    
     background: none;
-    border: none;    
+    border: none;
+    padding-left: 19px;
 }
 
 .profile__edit-button:hover {
@@ -69,7 +71,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 415px;    
+    max-width: 415px;
+    padding-top: 7px;    
 }
 
 .profile__add-button {
@@ -107,6 +110,7 @@
         flex-direction: column;
         align-content: center;
         row-gap: 30px;
+        padding-bottom: 36px;
     }
 
     .profile__avatar {
@@ -114,27 +118,32 @@
     }
 
     .profile__info {        
-        max-width: 282px;
+        max-width: 282px;        
         justify-content: center;
         align-content: center;
-        row-gap: 14px;
+        row-gap: 7px;
         margin-top: 0;
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
         white-space-collapse: collapse; 
         min-width: 0;
+        padding-left: 15px;
+        padding-top: 2px;
     }
 
     .profile__name {        
         font-size: 22px;        
         line-height: 27px;        
         text-align: center;
+        max-width: 196px;
     }
 
     .profile__edit-button {
         width: 18px;
         height: 18px;
+        padding-left: 12px;
+        padding-bottom: 20px;
     }
 
     .profile__edit-image {
@@ -147,8 +156,10 @@
         font-size: 14px;        
         line-height: 17px;        
         text-align: center;
-        padding-bottom: 32px;
+        padding-bottom: 6px;
         max-width: 282px;
+        padding-right: 15px;
+        padding-top: 0;        
     }
 
     .profile__add-button {
@@ -160,5 +171,12 @@
         object-fit: none;
         width: 282px;
         
+    }
+
+    .profile__add-button-logo {
+        width: 16px;
+        height: 16px;
+        padding-left: 2px;
+        padding-bottom: 2px;
     }
 }

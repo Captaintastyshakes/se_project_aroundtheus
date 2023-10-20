@@ -48,6 +48,8 @@
     white-space: nowrap;
     overflow: hidden;
     padding-left: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -60,9 +62,10 @@
     opacity: 100%;
     margin-right: 30px;    
     cursor: pointer;
-    padding-left: 0;
+    padding-left: 10px;
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 25px;
+    padding-right: 0;
     border: none;
     background: none;
 }

@@ -1,7 +1,6 @@
 .header {
     max-width: 880px;
-    width: 100%;
-    min-height: 74px;
+    width: 100%;    
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -18,25 +17,17 @@
 .header__logo {
     max-width: 173px;
     max-height: 33px;
+    padding-bottom: 41px;
 }
 
-@media screen and (max-width: 890px) {    
+@media screen and (max-width: 890px) {
 
-    /*.header {
-        width: 320px;
-    }*/
-    
     .header__logo {
         width: 126px;
         height: 24px;
         padding-left: 27px;
-        margin-bottom: 42px;
+        padding-bottom: 0;
+        margin-bottom: 32px;        
     }
 
 }
-
-/*@media screen and (max-width: 340px) {
-    .header {
-        width: 282px;
-    }
-}*/
