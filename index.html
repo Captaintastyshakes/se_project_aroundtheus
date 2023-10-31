@@ -23,7 +23,26 @@
                 <button type="button" class="profile__edit-button"><img class="profile__edit-image" src="images/Edit-Button.svg" alt="Edit button"></button>
                 <p class="profile__occupation">Explorer</p>
             </div>                        
-            <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="images/addbutton.svg" alt="Add photos"></button>    
+            <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="images/addbutton.svg" alt="Add photos"></button>
+            <div class="profile__modal">
+                <div class="profile__modal-opened">
+                    <fieldset class="profile__modal-box">
+                        <button type="button" class="profile__modal-exit">
+                            <img src="images/Close Icon.svg" alt="Close">
+                        </button>
+                        <h3 class="profile__modal-header">Edit Profile</h3>
+                        <label class="profile__modal-label" for="name">
+                            <input type="text" class="profile__modal-name" name="name" placeholder="Name">
+                        </label>
+                        <label class="profile__modal-label" for="about me">
+                            <input type="text" class="profile__modal-occupation" name="about me" placeholder="Description">
+                        </label>
+                        <button class="profile__modal-save" type="submit"><p>Save</p></button>
+                    </fieldset>
+                </div>
+                
+            </div>
+            
         </section>
         <section class="cards">
             <div class="cards__card">  
