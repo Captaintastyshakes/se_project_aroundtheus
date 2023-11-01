@@ -32,3 +32,18 @@ let initialCards = [
     } 
     
 ];
+
+let editButton = document.querySelector('.profile__edit-button');
+
+let closeModal = document.querySelector('.profile__modal-exit');
+
+let modalBox = profile.querySelector('.profile__modal');
+
+editButton.addEventListener("click", function() {    
+    modalBox.removeAttribute('style', 'display');
+});
+
+closeModal.addEventListener("click", function() {
+    modalBox.addAttribute('style', "display: none");
+});
+
