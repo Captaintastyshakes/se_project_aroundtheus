@@ -1,3 +1,5 @@
+/*--objects--*/
+
 let initialCards = [
     
     object1 = {
@@ -33,17 +35,55 @@ let initialCards = [
     
 ];
 
+
+/*--variables--*/
+
+/*for opening and closing functions*/
 let editButton = document.querySelector('.profile__edit-button');
 
 let closeModal = document.querySelector('.profile__modal-exit');
 
 let modalBox = profile.querySelector('.profile__modal');
 
+/*for populating form fields*/
+
+let nameField = document.querySelector('.profile__modal-name');
+
+let profileName = document.querySelector('.profile__name');
+
+let aboutMeField = document.querySelector('.profile__modal-occupation');
+
+let profileOccupation = document.querySelector('.profile__occupation')
+
+/*submit*/
+
+let saveButton = document.querySelector('profile__modal-save');
+
+
+
+/*--functions--*/
+
+/*opening modal*/
 editButton.addEventListener("click", function() {    
     modalBox.removeAttribute('style', 'display');
-});
+    /*populating the modal/form*/
+    nameField = profileName.textContent;
+    aboutMeField = profileOccupation.textContent;
 
+});
+/*closing modal*/
 closeModal.addEventListener("click", function() {
     modalBox.addAttribute('style', "display: none");
 });
+
+/*saving/submitting*/
+
+function handleProfileFormSubmit(evt) {
+    evt.preventDefault();
+    
+    
+}
+
+saveButton.addEventListener("submit", handleProfileFormSubmit);
+
 
