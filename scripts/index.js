@@ -82,10 +82,10 @@ closeModal.addEventListener("click", function() {
 
 /*(2)saving/submitting*/
 
-function handleProfileFormSubmit(event) {
-    event.preventDefault();
+function handleProfileFormSubmit(event) {    
     profileName.textContent = nameField.value;
-    profileOccupation.textContent = aboutMeField.value;    
+    profileOccupation.textContent = aboutMeField.value;
+    event.preventDefault();
 }
 
 saveButton.addEventListener("submit", handleProfileFormSubmit());
