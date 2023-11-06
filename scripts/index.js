@@ -82,8 +82,8 @@ closeModal.addEventListener("click", function() {
 
 /*(2)saving/submitting*/
 
-function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
+function handleProfileFormSubmit(event) {
+    event.preventDefault();
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;    
 }
