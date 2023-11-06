@@ -61,7 +61,7 @@ const saveButton = document.querySelector('.profile__modal-save');
 
 /*(3)card template*/
 
-let cardTemplate = document.querySelector('#card');
+let cardTemplate = document.querySelector('#card').content;
 
 let cardImplement = document.querySelector('.cards');
 
