@@ -57,7 +57,7 @@ let profileOccupation = document.querySelector('.profile__occupation')
 
 /* (2)submit*/
 
-const saveButton = document.querySelector('.profile__modal-save');
+let saveButton = document.querySelector('.profile__modal-save');
 
 /*(3)card template*/
 
@@ -88,7 +88,7 @@ closeModal.addEventListener("click", function() {
     event.preventDefault();
 } just turning this into an anonymous function, seeing if that solves it.*/
 
-saveButton.addEventListener("submit", function(event){
+saveButton.addEventListener("click", function(event){
     event.preventDefault();
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
