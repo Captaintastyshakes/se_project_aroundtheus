@@ -1,4 +1,4 @@
-/*--objects--*/
+/*--arrays/objects--*/
 
 let initialCards = [
     
@@ -38,14 +38,14 @@ let initialCards = [
 
 /*--variables--*/
 
-/*for opening and closing functions*/
+/*(0) for opening and closing functions*/
 let editButton = document.querySelector('.profile__edit-button');
 
 let closeModal = document.querySelector('.profile__modal-exit');
 
-let modalBox = profile.querySelector('.profile__modal');
+let modalBox = document.querySelector('.profile__modal');
 
-/*for populating form fields*/
+/*(1)for populating form fields*/
 
 let nameField = document.querySelector('.profile__modal-name');
 
@@ -55,15 +55,19 @@ let aboutMeField = document.querySelector('.profile__modal-occupation');
 
 let profileOccupation = document.querySelector('.profile__occupation')
 
-/*submit*/
+/* (2)submit*/
 
-let saveButton = document.querySelector('profile__modal-save');
+const saveButton = document.querySelector('.profile__modal-save');
 
+/*(3)card template*/
 
+let cardTemplate = document.querySelector('#card');
+
+let cardImplement = document.querySelector('.cards');
 
 /*--functions--*/
 
-/*opening modal*/
+/*(0)opening modal*/
 editButton.addEventListener("click", function() {    
     modalBox.removeAttribute('style', 'display');
     /*populating the modal/form*/
@@ -71,19 +75,38 @@ editButton.addEventListener("click", function() {
     aboutMeField = profileOccupation.textContent;
 
 });
-/*closing modal*/
+/*(0)closing modal*/
 closeModal.addEventListener("click", function() {
     modalBox.addAttribute('style', "display: none");
 });
 
-/*saving/submitting*/
+/*(2)saving/submitting*/
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
-    
-    
+    profileName.textContent = nameField.value;
+    profileOccupation.textContent = aboutMeField.value;    
 }
 
-saveButton.addEventListener("submit", handleProfileFormSubmit);
+saveButton.addEventListener("submit", handleProfileFormSubmit());
+
+/*(3)rendering card*/
+
+function getcardElement(data) {
+    cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);
+    /*cardElement.querySelector('cards__image').src = initialCards[];*/
+    cardImage = cardElement.querySelector('.cards__image');
+    cardImage.src = initialCards[data].link;
+    cardImage.alt = initialCards[data].name;
+    cardTitle = cardElement.querySelector('.cards__title');    
+    cardTitle.textContent = initialCards[data].name;
+    return cardElement;
+}
+
+/*(3)implementing card*/
+for (i=0; i < initialCards.length; i++) {
+    getcardElement(i);
+    cardImplement.append(cardElement);
+}
 
 
