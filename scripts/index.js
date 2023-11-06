@@ -69,10 +69,10 @@ let cardImplement = document.querySelector('.cards');
 
 /*(0)opening modal*/
 editButton.addEventListener("click", function() {    
-    modalBox.removeAttribute('style', 'display');
+    modalBox.removeAttribute('style', 'display: none;');
     /*populating the modal/form*/
-    nameField = profileName.textContent;
-    aboutMeField = profileOccupation.textContent;
+    nameField.value = profileName.textContent;
+    aboutMeField.value = profileOccupation.textContent;
 
 });
 /*(0)closing modal*/
