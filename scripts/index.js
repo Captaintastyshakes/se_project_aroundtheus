@@ -82,13 +82,17 @@ closeModal.addEventListener("click", function() {
 
 /*(2)saving/submitting*/
 
-function handleProfileFormSubmit(event) {    
+/*function handleProfileFormSubmit(event) {    
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
     event.preventDefault();
-}
+} just turning this into an anonymous function, seeing if that solves it.*/
 
-saveButton.addEventListener("submit", handleProfileFormSubmit());
+saveButton.addEventListener("submit", function(event){
+    event.preventDefault();
+    profileName.textContent = nameField.value;
+    profileOccupation.textContent = aboutMeField.value;
+});
 
 /*(3)rendering card*/
 
