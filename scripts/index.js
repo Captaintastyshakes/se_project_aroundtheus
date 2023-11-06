@@ -69,7 +69,7 @@ let cardImplement = document.querySelector('.cards');
 
 /*(0)opening modal*/
 editButton.addEventListener("click", function() {    
-    modalBox.removeAttribute('style', 'display: none;');
+    modalBox.removeAttribute('style', "display: none;");
     /*populating the modal/form*/
     nameField.value = profileName.textContent;
     aboutMeField.value = profileOccupation.textContent;
@@ -100,10 +100,10 @@ function getcardElement(data) {
     cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);
     /*cardElement.querySelector('cards__image').src = initialCards[];*/
     cardImage = cardElement.querySelector('.cards__image');
-    cardImage.src = "${initialCards[data].link}";
-    cardImage.alt = "${initialCards[data].name}";
+    cardImage.src = initialCards[data].link;
+    cardImage.alt = initialCards[data].name;
     cardTitle = cardElement.querySelector('.cards__title');    
-    cardTitle.textContent = "${initialCards[data].name}";
+    cardTitle.textContent = initialCards[data].name;
     return cardElement;
 }
 
