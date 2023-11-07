@@ -35,7 +35,6 @@ let initialCards = [
     
 ];
 
-
 /*--variables--*/
 
 /*(0) for opening and closing functions*/
@@ -73,11 +72,11 @@ editButton.addEventListener("click", function() {
     /*populating the modal/form*/
     nameField.value = profileName.textContent;
     aboutMeField.value = profileOccupation.textContent;
-
 });
+
 /*(0)closing modal*/
 closeModal.addEventListener("click", function() {
-    modalBox.addAttribute('style', "display: none");
+    modalBox.setAttribute("style", "display: none");
 });
 
 /*(2)saving/submitting*/
