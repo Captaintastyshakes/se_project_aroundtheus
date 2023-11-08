@@ -38,7 +38,7 @@ let initialCards = [
 /*--variables--*/
 
 /*(0) for opening and closing functions*/
-let editButton = document.querySelector('.profile__edit-button');
+let editButton = document.querySelector(".profile__edit-button");
 
 let closeModal = document.querySelector('.profile__modal-exit');
 
@@ -68,7 +68,8 @@ let cardImplement = document.querySelector('.cards');
 
 /*(0)opening modal*/
 editButton.addEventListener("click", function() {    
-    modalBox.removeAttribute("style", "display");
+    /*modalBox.removeAttribute("style", "display:"); this wasn't working so I changed it to manipulate class lists instead.*/
+    modalBox.classList.add("profile__modal-opened");
     /*populating the modal/form*/
     nameField.value = profileName.textContent;
     aboutMeField.value = profileOccupation.textContent;
@@ -76,7 +77,8 @@ editButton.addEventListener("click", function() {
 
 /*(0)closing modal*/
 closeModal.addEventListener("click", function() {
-    modalBox.setAttribute("style", "display: none");
+    /*modalBox.setAttribute("style", "display: none"); correspondiong change to the above.*/
+    modalBox.classList.remove("profile__modal-opened");
 });
 
 /*(2)saving/submitting*/

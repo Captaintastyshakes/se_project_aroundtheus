@@ -104,10 +104,10 @@
 /*modal*/
 
 .profile__modal {
-    display: none; /*this apparently was causing problems?*/
-    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
     width: 100vw;
-    height: 100vh;        
+    height: 110vh;        
     position: fixed;
     
 }
@@ -120,18 +120,18 @@
 .profile__modal-box {
     display: flex;
     flex-direction: column;
-    width: 430px;
-    align-items: center;
-    /*width: 100%;*/
+    max-width: 430px;
+    width: 100%;
+    align-items: center;    
     max-height: 330px;
     height: 100%;
     padding-left: 0;
-    padding-right: 0;
-    padding-top: 34px;
-    padding-bottom: 36px;
+    padding-right: 0;    
+    padding-top: 0;
+    padding-bottom: 0;
     background-color: white;    
     position: relative;
-    left: 250px; 
+    left: 223px; 
     top: 500px;
     border-style: none;
     border-width: 0;
@@ -141,7 +141,7 @@
 
 .profile__modal-exit {
     position: absolute;
-    right: -48px;
+    right: -40px;
     top: -48px;
     width: 40px;
     height: 40px;
@@ -168,20 +168,25 @@
     text-wrap: none;
     width: 100%;
     max-width: 330px;
-    margin-bottom: 54px;
-    /*margin-top: 34px;*/
+    margin-bottom: 47px;
+    margin-top: 23px;
+    margin-right: 28px;
 }
 
 .profile__modal-label {
-    width: 330px;
+    width: 100%;
+    /*margin-right: 30px;*/
+    padding-left: 68px;
 }
 
 .profile__modal-name {
-    width: 100%;
-    max-width: 330px;
+    /*width: 100%;*/
+    width: 355px;
+    /*max-width: 330px;*/
+    max-width: 355px;
     border-style: solid;
     border-width: 1px;
-    border-color: black;
+    border-color: rgba(0, 0, 0, 0.2);
     border-top: none;
     border-left: none;
     border-right: none;
@@ -189,15 +194,18 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    margin-bottom: 29px;    
+    margin-bottom: 29px;
+    padding-bottom: 10px;
 }
 
 .profile__modal-occupation {
-    width: 100%;
-    max-width: 330px;
+    /*width: 100%;*/
+    width: 355px;
+    /*max-width: 330px;*/
+    max-width: 355px;
     border-style: solid;
     border-width: 1px;
-    border-color: black;
+    border-color: rgba(0, 0, 0, 0.2);
     border-top: none;
     border-left: none;
     border-right: none;
@@ -206,11 +214,13 @@
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 48px;
+    padding-bottom: 8px;
 }
 
 .profile__modal-save {
-    width: 100%;
-    max-width: 330px;
+    /*width: 100%;*/
+    /*max-width: 355px;*/
+    width: 355px;    
     background: black;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-weight: 400;
@@ -222,6 +232,10 @@
     border-color: black;
     opacity: 100%;
     transition: opacity 1s;
+    margin-bottom: 63px;
+    padding-top: 15px;
+    padding-left: 8px;
+    padding-bottom: 13px;
 }
 
 .profile__modal-save:hover {
@@ -300,30 +314,82 @@
         height: 16px;
         padding-left: 2px;
         padding-bottom: 2px;
-    }
-}
+    }    
 
+    .profile__modal-box {
+        top: 250px;
+    }
+
+}
 @media screen and (max-width: 890px) {
+
+    .profile__modal {
+        height: 568px;
+        width: 320px;
+    }
+
+    .profile__modal-opened {
+        /*max-width: 282px;
+        max-height: 322px;*/
+        align-items: center;
+    }
+
     .profile__modal-box {
         max-width: 282px;
         max-height: 322px;
+        width: 282px;
+        height: 322px;
         padding-left: 0;
         padding-right: 0;
         padding-top: 25px;
         padding-bottom: 25px;
         left: auto;
         right: auto;
-        top: 50%;
+        top: 0;
     }
 
     .profile__modal-exit {
-        height: 26px;
-        width: 26px;
+        right: 0;        
+    }    
+
+    .profile__modal-close {
+        height: 21px;
+        width: 21px;
     }
 
     .profile__modal-header {
         font-size: 18px;
         line-height: 22px;
-        margin-bottom: 75px;
+        margin-bottom: 73px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding-left: 38px;
+    }
+
+    .profile__modal-name {
+        max-width: 235px;        
+    }
+
+    .profile__modal-occupation {
+        max-width: 235px;        
+    }
+
+    .profile__modal-label {
+        max-width: 250px;        
+        padding-left: 5px;
+    }
+
+    .profile__modal-save {
+        max-width: 240px;
+        max-height: 322px;
+        margin-bottom: 0;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: center;
+        padding-bottom: 10px;
+        padding-top: 10px;
     }
 }
