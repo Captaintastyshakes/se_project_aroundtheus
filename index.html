@@ -24,22 +24,21 @@
                 <p class="profile__occupation">Explorer</p>
             </div>                        
             <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="images/addbutton.svg" alt="Add photos"></button>
-            <div class="profile__modal">
-                <div class="profile__modal-opened">
-                    <fieldset class="profile__modal-box">
-                        <button type="button" class="profile__modal-exit">
-                            <img class="profile__modal-close" src="images/Close Icon.svg" alt="Close">
-                        </button>
-                        <h3 class="profile__modal-header">Edit profile</h3>
-                        <label class="profile__modal-label" for="name">
-                            <input type="text" class="profile__modal-name" id="name" placeholder="Name">
-                        </label>
-                        <label class="profile__modal-label" for="about_me">
-                            <input type="text" class="profile__modal-occupation" id="about_me" placeholder="Description">
-                        </label>
-                        <button class="profile__modal-save" type="submit">Save</button>
-                    </fieldset>
-                </div>
+            <div class="modal">
+                <button type="button" class="modal__exit">
+                    <img class="modal__close" src="images/Close Icon.svg" alt="Close">
+                </button>
+                <form class="modal__box">                        
+                    <h3 class="modal__header">Edit profile</h3>
+                    <label class="modal__label" for="name">
+                        <input type="text" class="modal__input" id="name" placeholder="Name" required>
+                    </label>
+                    <label class="modal__label" for="about_me">
+                        <input type="text" class="modal__input" id="about_me" placeholder="Description" required>
+                    </label>
+                    <button class="modal__save" type="submit">Save</button>
+                </form>
+                
                 
             </div>
             
@@ -60,6 +59,6 @@
             </div>    
         </div>
     </template>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/index.js" defer></script>
 </body>
 </html>

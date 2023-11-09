@@ -1,6 +1,6 @@
 /*--arrays/objects--*/
 
-let initialCards = [
+const initialCards = [
     
     object1 = {
         name: "Yosemite Valley",
@@ -38,48 +38,59 @@ let initialCards = [
 /*--variables--*/
 
 /*(0) for opening and closing functions*/
-let editButton = document.querySelector(".profile__edit-button");
+const editProfileButton = document.querySelector(".profile__edit-button");
 
-let closeModal = document.querySelector('.profile__modal-exit');
+const profileCloseModal = document.querySelector('.modal__exit');
 
-let modalBox = document.querySelector('.profile__modal');
+const editProfilePopup /*modal*/ = document.querySelector('.modal');
 
 /*(1)for populating form fields*/
 
-let nameField = document.querySelector('.profile__modal-name');
+const nameField = document.querySelector('.modal__name');
 
-let profileName = document.querySelector('.profile__name');
+const profileName = document.querySelector('.profile__name');
 
-let aboutMeField = document.querySelector('.profile__modal-occupation');
+const aboutMeField = document.querySelector('.modal__occupation');
 
-let profileOccupation = document.querySelector('.profile__occupation')
+const profileOccupation = document.querySelector('.profile__occupation')
 
 /* (2)submit*/
 
-let saveButton = document.querySelector('.profile__modal-save');
+const saveButton = document.querySelector('.modal__save');
 
 /*(3)card template*/
 
 let cardTemplate = document.querySelector('#card').content;
 
-let cardImplement = document.querySelector('.cards');
+const cardImplement = document.querySelector('.cards');
 
 /*--functions--*/
 
 /*(0)opening modal*/
-editButton.addEventListener("click", function() {    
-    /*modalBox.removeAttribute("style", "display:"); this wasn't working so I changed it to manipulate class lists instead.*/
-    modalBox.classList.add("profile__modal-opened");
-    /*populating the modal/form*/
+
+function generalOpenModal(modal) {
+    modal.classList.add(".modal__opened");
+}
+
+function fillProfileForm() {    
     nameField.value = profileName.textContent;
     aboutMeField.value = profileOccupation.textContent;
-});
+}
+
+function editProfileHandler() {    
+    generalOpenModal(editProfilePopup);
+    fillProfileForm();
+}
+
+editProfileButton.addEventListener("click", editProfileHandler());
 
 /*(0)closing modal*/
-closeModal.addEventListener("click", function() {
-    /*modalBox.setAttribute("style", "display: none"); correspondiong change to the above.*/
-    modalBox.classList.remove("profile__modal-opened");
-});
+
+function  generalCloseModal(modal) {
+    modal.classList.remove(".modal__opened");
+}
+
+profileCloseModal.addEventListener("click", generalCloseModal(editProfilePopup));
 
 /*(2)saving/submitting*/
 
@@ -89,15 +100,21 @@ closeModal.addEventListener("click", function() {
     event.preventDefault();
 } just turning this into an anonymous function, seeing if that solves it.*/
 
-saveButton.addEventListener("click", function(event){
-    event.preventDefault();
+function submitProfileForm() {
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
+} 
+
+
+saveButton.addEventListener("submit", function(event){
+    event.preventDefault();
+    submitProfileForm();
+    generalCloseModal(editProfilePopup);
 });
 
 /*(3)rendering card*/
 
-function getcardElement(data) {
+function getCardElement(data) {
     cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);
     /*cardElement.querySelector('cards__image').src = initialCards[];*/
     cardImage = cardElement.querySelector('.cards__image');
@@ -110,7 +127,7 @@ function getcardElement(data) {
 
 /*(3)implementing card*/
 for (i=0; i < initialCards.length; i++) {
-    getcardElement(i);
+    getCardElement(i);
     cardImplement.append(cardElement);
 }
 
