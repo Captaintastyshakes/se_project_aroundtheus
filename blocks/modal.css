@@ -34,11 +34,11 @@
 }
 
 .modal__exit {
-    position: absolute;
-    right: -40px;
-    top: -48px;
-    width: 40px;
-    height: 40px;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
     background: none;
     border-style: none;
     border-width: 0;
