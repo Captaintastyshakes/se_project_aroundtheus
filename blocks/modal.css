@@ -1,13 +1,16 @@
 .modal {
     display: none;
     background: rgba(0, 0, 0, 0.5);
-    width: 100vw;
-    height: 110vh;        
+    /*width: 100vw;
+    height: 110vh;*/
+    width: 100%;
+    /*height: 100%;*/
+    height: 200%;
     position: fixed;
     flex-direction: column;    
 }
 
-.modal__opened {
+.modal_opened {
     display: flex;    
 }
 
@@ -25,8 +28,11 @@
     padding-bottom: 0;
     background-color: white;    
     position: relative;
-    left: 223px; 
-    top: 500px;
+    top: 48.8%;
+    left: 15.5%;
+    /*left: 223px; 
+    top: 500px;*/
+
     border-style: none;
     border-width: 0;
     border-color: black;
@@ -34,11 +40,11 @@
 }
 
 .modal__exit {
-    position: relative;
-    right: 0;
-    top: 0;
-    width: 0;
-    height: 0;
+    position: absolute;
+    left: 655px;
+    bottom: 1158px;
+    width: 42px;
+    height: 42px;
     background: none;
     border-style: none;
     border-width: 0;
@@ -73,10 +79,8 @@
     padding-left: 68px;
 }
 
-.modal__input {
-    /*width: 100%;*/
-    width: 355px;
-    /*max-width: 330px;*/
+.modal__input {    
+    width: 85%;    
     max-width: 355px;
     border-style: solid;
     border-width: 1px;
@@ -97,10 +101,8 @@
     padding-bottom: 8px;
 }
 
-.modal__save {
-    /*width: 100%;*/
-    /*max-width: 355px;*/
-    width: 355px;    
+.modal__save {    
+    width: 85%;
     background: black;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-weight: 400;
@@ -135,17 +137,14 @@
 @media screen and (max-width: 890px) {
 
     .modal {
-        height: 568px;
+        height: 150%;
         width: 320px;
-    }
-
-    .modal__opened {
-        /*max-width: 282px;
-        max-height: 322px;*/
         align-items: center;
-    }
+        justify-content: flex-start;
+    }    
 
     .modal__box {
+        align-self: center;
         max-width: 282px;
         max-height: 322px;
         width: 282px;
@@ -178,13 +177,13 @@
         padding-left: 38px;
     }
 
-    .modal__name {
-        max-width: 235px;        
+    .modal__input {
+        max-width: 95%; /**/
     }
 
-    .modal__occupation {
-        max-width: 235px;        
-    }
+    /*.modal__input:last-of-type {
+        max-width: 80%;   
+    }*/
 
     .modal__label {
         max-width: 250px;        
