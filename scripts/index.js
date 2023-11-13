@@ -60,7 +60,7 @@ const saveButton = document.querySelector('.modal__box'); //having this target t
 
 /*(3)card template*/
 
-let cardTemplate = document.querySelector('#card').content;
+const cardTemplate = document.querySelector('#card').content;
 
 const cardImplement = document.querySelector('.cards');
 
@@ -68,7 +68,7 @@ const cardImplement = document.querySelector('.cards');
 
 /*(0)opening modal*/
 
-function generalOpenModal(modal) {    
+function openModal(modal) {    
     modal.classList.add('modal_opened');
 }
 
@@ -77,36 +77,36 @@ function fillProfileForm() {
     aboutMeField.value = profileOccupation.textContent;
 }
 
-function editProfileHandler() {    
-    generalOpenModal(editProfilePopup);
+function handleEditProfileButtonClick() {
+    openModal(editProfilePopup);
     fillProfileForm();
 }
 
-editProfileButton.addEventListener("click", editProfileHandler); //
+editProfileButton.addEventListener("click", handleEditProfileButtonClick); //
 
 /*(0)closing modal*/
 
-function  generalCloseModal(modal) {    
+function  closeModal(modal) {    
     modal.classList.remove('modal_opened');
 }
 
-function editProfileCloseHandler() {
-    generalCloseModal(editProfilePopup);
+function closeEditProfileModal() {
+    closeModal(editProfilePopup);
 }
 
-profileCloseModal.addEventListener("click", editProfileCloseHandler);
+profileCloseModal.addEventListener("click", closeEditProfileModal);
 
 /*(2)saving/submitting*/
 
-function submitProfileForm() {
+function fillProfileInfo() {
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
 } 
 
 function handleProfileFormSubmit(event) {    
     event.preventDefault();    
-    submitProfileForm();
-    generalCloseModal(editProfilePopup);    
+    fillProfileInfo();
+    closeModal(editProfilePopup);    
 }
 
 saveButton.addEventListener("submit", handleProfileFormSubmit);
