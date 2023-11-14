@@ -16,9 +16,13 @@
 
 /*close button*/
 .modal__exit {
-    position: absolute;
-    left: 740px;
-    bottom: 1158px;
+    /*position: absolute;*/
+    position: fixed;
+    /*left: 740px;*/    
+    /*bottom: 1158px;*/
+    top: 16%;
+    /*left: 50%;*/
+    right: 32%;
     width: 42px;
     height: 42px;
     background: none;
@@ -52,7 +56,6 @@
     left: 15.5%;
     /*left: 223px; 
     top: 500px;*/
-
     border-style: none;
     border-width: 0;
     border-color: black;
@@ -132,6 +135,11 @@
         top: 250px;
     }
 
+    .modal__exit {
+        top: 38%;
+        right: 40%;
+    }
+
 }
 
 @media screen and (max-width: 890px) {
@@ -159,7 +167,8 @@
     }
 
     .modal__exit {
-        right: 0;        
+        right: 28%;
+        top: 11%;   
     }    
 
     .modal__close {
@@ -201,5 +210,17 @@
         text-align: center;
         padding-bottom: 10px;
         padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .modal__exit {
+        right: 15%;        
+    }
+}
+    
+@media screen and (max-width: 390px) {
+    .modal__exit {
+        right: 0;
     }
 }
