@@ -37,14 +37,14 @@ const initialCards = [
 
 /*--variables--*/
 
-/*(0) for opening and closing functions*/
+/*(4.0) for opening and closing functions*/
 const editProfileButton = document.querySelector('.profile__edit-button');
 
 const profileCloseModal = document.querySelector('section.profile .modal__exit');
 
 const editProfilePopup = document.querySelector('.modal');
 
-/*(1)for populating form fields*/
+/*(4.1)for populating form fields*/
 
 const nameField = document.querySelector('.modal__input');
 
@@ -54,11 +54,11 @@ const aboutMeField = document.querySelector('#about_me');
 
 const profileOccupation = document.querySelector('.profile__occupation')
 
-/* (2)submit*/
+/* (4.2)submit*/
 
 const saveButton = document.querySelector('.modal__box'); //having this target the whole form instead of just the submit button
 
-/*(3)card template*/
+/*(4.3)card template*/
 
 const cardTemplate = document.querySelector('#card').content;
 
@@ -66,7 +66,7 @@ const cardImplement = document.querySelector('.cards');
 
 /*--functions--*/
 
-/*(0)opening modal*/
+/*(4.0)opening modal*/
 
 function openModal(modal) {    
     modal.classList.add('modal_opened');
@@ -84,7 +84,7 @@ function handleEditProfileButtonClick() {
 
 editProfileButton.addEventListener("click", handleEditProfileButtonClick); //
 
-/*(0)closing modal*/
+/*(4.0)closing modal*/
 
 function  closeModal(modal) {    
     modal.classList.remove('modal_opened');
@@ -96,7 +96,7 @@ function closeEditProfileModal() {
 
 profileCloseModal.addEventListener("click", closeEditProfileModal);
 
-/*(2)saving/submitting*/
+/*(4.2)saving/submitting*/
 
 function fillProfileInfo() {
     profileName.textContent = nameField.value;
@@ -111,7 +111,7 @@ function handleProfileFormSubmit(event) {
 
 saveButton.addEventListener("submit", handleProfileFormSubmit);
 
-/*(3)rendering card*/
+/*(4.3)rendering card*/
 
 function getCardElement(data) {
     cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);    
@@ -123,10 +123,19 @@ function getCardElement(data) {
     return cardElement;
 }
 
-/*(3)implementing card*/
-for (i=0; i < initialCards.length; i++) {
+/*(4.3)implementing card*/
+/*for (i=0; i < initialCards.length; i++) {
     getCardElement(i);
     cardImplement.append(cardElement);
+}*///striking out to see if my forEach() call works
+
+//5.1 rendering/implementing cards with a forEach() instead of for loop
+
+initialCards.forEach(function (item)) {
+    getCardElement(item);
+    cardImplement.append(cardElement);
 }
+
+
 
 
