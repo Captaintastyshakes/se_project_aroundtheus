@@ -1,4 +1,7 @@
-/*--arrays/objects--*/
+// ({sprint project number} . {project sub-task}) this is used for indexing tasks according to the sprint and the project phase
+// e.g. 4.1 would be project for sprint 4, first task: fill form field, as an example.
+
+/*--arrays/objects--*/ //---------------------------------------------------------------------------
 
 const initialCards = [
     
@@ -38,6 +41,7 @@ const initialCards = [
 /*--variables--*/ //--------------------------------------
 
 /*(4.0) for opening and closing functions*/
+
 const editProfileButton = document.querySelector('.profile__edit-button');
 
 const profileCloseModal = document.querySelector('section.profile .modal__exit');
@@ -70,6 +74,10 @@ const cardAddButton = document.querySelector('.profile__add-button');
 
 const modalHeader = document.querySelector('.modal__header');
 
+//(5.5) delete photo elements
+
+const deleteButton = document.querySelector('.card__delete');
+
 /*--functions--*/ //------------------------------------------------
 
 /*(4.0)opening modal*/
@@ -81,6 +89,7 @@ function openModal(modal) {
 function fillProfileForm() {    
     nameField.value = profileName.textContent;
     aboutMeField.value = profileOccupation.textContent;
+    modalHeader.textContent = "Edit profile";
 }
 
 function handleEditProfileButtonClick() {
@@ -91,9 +100,9 @@ function handleEditProfileButtonClick() {
 editProfileButton.addEventListener("click", handleEditProfileButtonClick); //
 
 // (5.2) opening modal for photo add 
-// (why make a whole other modal?)
+// (why make a whole other modal? I just want to repurpose the modal I already made- it's not clear why that would be inappropriate especially in light of never repeating yourself as a guiding principle).
 
-function changeModalToAdd () { //just disguises the profile modal as add photos... now how to get it to submit as add photos...
+function changeModalToAdd () { //just disguises the profile modal as add photos
     modalHeader.textContent = "New Place";
     nameField.value = "";
     nameField.placeholder = "Title";
@@ -102,7 +111,7 @@ function changeModalToAdd () { //just disguises the profile modal as add photos.
 }
 
 function changeSaveToAdd () {
-    saveButton.classList.add('saveForAdd');
+    saveButton.classList.add('saveForAdd'); //adds a ghost class to the save button that I can then apply a logic check to. It puts on a different hat, in so many words.
 }
 
 function handleAddButtonClick() {
@@ -121,6 +130,7 @@ function  closeModal(modal) {
 
 function closeEditProfileModal() {
     closeModal(editProfilePopup);
+    saveButton.classList.remove("saveForAdd"); //removes the ghost class, just in case it was added
 }
 
 profileCloseModal.addEventListener("click", closeEditProfileModal);
@@ -130,22 +140,32 @@ profileCloseModal.addEventListener("click", closeEditProfileModal);
 function fillProfileInfo() {
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
-} 
-
-//(5.3) adding photos
-
-function addPhoto() {
-
 }
 
-function handleProfileFormSubmit(event) {     
+//(5.3) adding photos/submitting with the add photo form
+
+function makeNewPhoto() { //ok so I need to make an object that has name and link data THEN cram it into the beginning of the initialCards array. Do I also need to have the script run again? 
+    let newObject = {};
+    newObject.name = nameField.value;
+    newObject.link = aboutMeField.value;
+    return newObject;    
+}
+
+/*function addNewPhoto(newObject) {
+    initialCards.unshift(newObject);
+}*/
+
+function handleProfileFormSubmit(event) {
     event.preventDefault();
-     if (saveButton.classList.contains("saveForAdd")) { //when the modal is up for adding photos
+    if (saveButton.classList.contains("saveForAdd")) { //(5.3) when the modal is up for adding photos
+        makeNewPhoto();
+        /*addNewPhoto(newObject);*/
         closeModal(editProfilePopup);
-        addPhoto();
-     }
-    fillProfileInfo();     
-    closeModal(editProfilePopup);    
+     } 
+    else { 
+        fillProfileInfo();     
+        closeModal(editProfilePopup);
+    }
 }
 
 saveButton.addEventListener("submit", handleProfileFormSubmit);
@@ -174,11 +194,26 @@ function getCardElement(data) {
 
 //5.1 rendering/implementing cards with a forEach() instead of for loop
 
+/*function renderCards(item) {
+    getCardElement(item);
+    cardImplement.append(cardElement);
+}*/
+
 initialCards.forEach(function (item) {
     getCardElement(item);
     cardImplement.append(cardElement);    
 });
 
+/*initialCards.forEach(renderCards (item));*/
 
+//(5.5) Deleting cards
+//I'm mostly just sketching this out
 
+function handleCardDelete(event) {
+  let markForDelete = event.target;//OK so the idea is this tells which delete button is pressed...
+  let cardTarget = markForDelete.parentElement; //...and then it looks for the parent of the delete button. (That is, the card).
+  cardTarget.setAttribute("disabled", true); //Once it knows the parent of the delete button it disables the card which isn't precisely the same as deleting it but I think it's close enough.
+  
+}
 
+deleteButton.addEventListener("click", handleCardDelete); //might have to make this submit instead of click depending on how I set up the del button.
