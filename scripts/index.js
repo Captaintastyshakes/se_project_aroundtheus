@@ -74,9 +74,17 @@ const cardAddButton = document.querySelector('.profile__add-button');
 
 const modalHeader = document.querySelector('.modal__header');
 
+//(5.4) the like button
+
+const cardLikeButton = document.querySelector('.cards__like-button');
+
 //(5.5) delete photo elements
 
-const deleteButton = document.querySelector('.card__delete');
+const deleteButton = document.querySelector('.cards__delete-button');
+
+//(5.6) bi pic modal
+
+const cardImageButton = document.querySelector('.cards__image');
 
 /*--functions--*/ //------------------------------------------------
 
@@ -124,7 +132,7 @@ cardAddButton.addEventListener("click", handleAddButtonClick);
 
 /*(4.0)closing modal*/
 
-function  closeModal(modal) {    
+function  closeModal(modal) {
     modal.classList.remove('modal_opened');
 }
 
@@ -144,23 +152,21 @@ function fillProfileInfo() {
 
 //(5.3) adding photos/submitting with the add photo form
 
-function makeNewPhoto() { //ok so I need to make an object that has name and link data THEN cram it into the beginning of the initialCards array. Do I also need to have the script run again? 
-    let newObject = {};
+function makeNewPhoto() {
+    let newObject = {
+        name: "",
+        link: ""
+    };
     newObject.name = nameField.value;
     newObject.link = aboutMeField.value;
     return newObject;    
 }
 
-/*function addNewPhoto(newObject) {
-    initialCards.unshift(newObject);
-}*/
-
 function handleProfileFormSubmit(event) {
     event.preventDefault();
-    if (saveButton.classList.contains("saveForAdd")) { //(5.3) when the modal is up for adding photos
-        makeNewPhoto();
-        /*addNewPhoto(newObject);*/
-        closeModal(editProfilePopup);
+    if (saveButton.classList.contains("saveForAdd")) { //(5.3) when the modal is up for adding photos        
+        renderCard(makeNewPhoto()); //there's an xibit joke in here somewhere about functions in your functions
+        closeEditProfileModal(editProfilePopup);
      } 
     else { 
         fillProfileInfo();     
@@ -174,14 +180,23 @@ saveButton.addEventListener("submit", handleProfileFormSubmit);
 
 function getCardElement(data) {
     cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);    
-    cardImage = cardElement.querySelector('.cards__image');
-    /*cardImage.src = initialCards[data].link;
-    cardImage.alt = initialCards[data].name;*/ //I think this is the source of malfunction- deploying in a different way
-    cardImage.src = data.link; //ya I was double-asking for the array which it didn't know what to do- this way works.
+    cardImage = cardElement.querySelector('.cards__image');    
+    cardImage.src = data.link; 
     cardImage.alt = data.name;
-    cardTitle = cardElement.querySelector('.cards__title');    
-    /*cardTitle.textContent = initialCards[data].name;*/ //this too
+    cardTitle = cardElement.querySelector('.cards__title');        
     cardTitle.textContent = data.name;
+    return cardElement;
+}
+
+// (5.3) part of adding a new card
+
+function getNewCardElement(object) { //can't just use the one above as is
+    cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);    
+    cardImage = cardElement.querySelector('.cards__image');
+    cardImage.src = object.link;
+    cardImage.alt = object.name;
+    cardTitle = cardElement.querySelector('.cards__title');        
+    cardTitle.textContent = object.name;
     return cardElement;
 }
 
@@ -189,22 +204,27 @@ function getCardElement(data) {
 /*for (i=0; i < initialCards.length; i++) {
     getCardElement(i);
     cardImplement.append(cardElement);
-}*/
-//striking out to see if my forEach() call works
+}*/ //the old way
 
 //5.1 rendering/implementing cards with a forEach() instead of for loop
 
-/*function renderCards(item) {
-    getCardElement(item);
-    cardImplement.append(cardElement);
-}*/
+function renderCard(item) {
+    getNewCardElement(item);
+    cardImplement.prepend(cardElement);
+}
 
 initialCards.forEach(function (item) {
     getCardElement(item);
-    cardImplement.append(cardElement);    
+    cardImplement.append(cardElement);
 });
 
-/*initialCards.forEach(renderCards (item));*/
+//(5.4) the like button
+
+function handleLikeButtonClick() {
+    cardLikeButton.src = "images/union.svg";
+}
+
+cardLikeButton.addEventListener("click", handleLikeButtonClick);
 
 //(5.5) Deleting cards
 //I'm mostly just sketching this out
@@ -212,8 +232,18 @@ initialCards.forEach(function (item) {
 function handleCardDelete(event) {
   let markForDelete = event.target;//OK so the idea is this tells which delete button is pressed...
   let cardTarget = markForDelete.parentElement; //...and then it looks for the parent of the delete button. (That is, the card).
-  cardTarget.setAttribute("disabled", true); //Once it knows the parent of the delete button it disables the card which isn't precisely the same as deleting it but I think it's close enough.
-  
+  cardTarget.setAttribute("style", "display: none"); //Once it knows the parent of the delete button it disables the card which isn't precisely the same as deleting it but I think it's close enough.  
 }
 
 deleteButton.addEventListener("click", handleCardDelete); //might have to make this submit instead of click depending on how I set up the del button.
+
+//(5.6) enlargin pics
+
+function handleImageClick(event) {
+    imageSelected = event.target;
+    
+    editProfilePopup.prepend(imageSelected);
+        
+}
+
+cardImageButton.addEventListener("click", handleImageClick);
