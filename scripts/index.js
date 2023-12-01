@@ -46,7 +46,7 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 
 const profileCloseModal = document.querySelector('section.profile .modal__exit');
 
-const editProfilePopup = document.querySelector('.modal');
+const editProfilePopup = document.querySelector('.modal'); //the basic modal
 
 /*(4.1)for populating form fields*/
 
@@ -58,7 +58,7 @@ const aboutMeField = document.querySelector('#about_me');
 
 const profileOccupation = document.querySelector('.profile__occupation')
 
-/* (4.2)submit*/
+/* (4.2)submit button*/
 
 const saveButton = document.querySelector('.modal__box'); //having this target the whole form instead of just the submit button
 
@@ -82,13 +82,23 @@ const cardLikeButton = document.querySelector('.cards__like-button');
 
 const deleteButton = document.querySelector('.cards__delete-button');
 
-//(5.6) bi pic modal
+//(5.6) card preview modal
 
-const cardImageButton = document.querySelector('.cards__image');
+//let cardImageButton = document.getElementById('#'); //do I need to make this an actual button? Or will the click event work fine?
 
-/*--functions--*/ //------------------------------------------------
+let cardImageButton = document.querySelector('.cards__image');
 
-/*(4.0)opening modal*/
+console.log(cardImageButton + "is ok");
+
+const cardPreview = document.querySelector('.modal__preview');
+
+const cardPortrait = document.querySelector('.modal__image');
+
+const cardSubtitle = document.querySelector('.modal__subtitle');
+
+/*--functions--*/ //------------------------------------------------------------------------------------------
+
+/*(4.0)opening edit profile modal/basics*///-------------------------------------
 
 function openModal(modal) {    
     modal.classList.add('modal_opened');
@@ -105,10 +115,11 @@ function handleEditProfileButtonClick() {
     fillProfileForm();
 }
 
-editProfileButton.addEventListener("click", handleEditProfileButtonClick); //
+editProfileButton.addEventListener("click", handleEditProfileButtonClick);
 
-// (5.2) opening modal for photo add 
-// (why make a whole other modal? I just want to repurpose the modal I already made- it's not clear why that would be inappropriate especially in light of never repeating yourself as a guiding principle).
+// (5.2) opening modal for photo add -----------------------------------------
+// why make a whole other modal? I just want to repurpose the modal I already made- it's not clear why that would be inappropriate especially in light of, "never repeat" yourself as a guiding principle
+//+achieves functionality set out in the assignment +doesn't needlessly repeat code +can be ammended/expanded upon in the future
 
 function changeModalToAdd () { //just disguises the profile modal as add photos
     modalHeader.textContent = "New Place";
@@ -118,8 +129,8 @@ function changeModalToAdd () { //just disguises the profile modal as add photos
     aboutMeField.placeholder = "Image URL";
 }
 
-function changeSaveToAdd () {
-    saveButton.classList.add('saveForAdd'); //adds a ghost class to the save button that I can then apply a logic check to. It puts on a different hat, in so many words.
+function changeSaveToAdd () { //adds a ghost class to the save button that I can then apply a logic check to. It puts on a different hat, in so many words.
+    saveButton.classList.add('saveForAdd');
 }
 
 function handleAddButtonClick() {
@@ -130,27 +141,73 @@ function handleAddButtonClick() {
 
 cardAddButton.addEventListener("click", handleAddButtonClick);
 
-/*(4.0)closing modal*/
+//(5.6) opening photo preview modal------------------------------------------------
+
+function fillCardPreview(event) {
+    cardTarget = event.target; //do I need to be more granular with selection?
+    cardTargetImage = cardTarget.querySelector('.cards__image'); //or whatever the right target is
+    cardTargetImage = document.querySelector('.cards__image');
+    cardPortrait.src = cardTargetImage.src;
+    cardPortrait.alt = cardTargetImage.title;
+    cardSubtitle.textContent = cardTargetImage.title;
+}
+
+function handlePhotoClick(event) {
+    openModal(cardPreview);
+    fillCardPreview(event);
+}
+
+
+//cardImageButton.addEventListener("click", handlePhotoClick);
+//console.log(cardImageButton);
+
+
+/*(4.0)closing modal*///---------------------------------------------------------------
 
 function  closeModal(modal) {
     modal.classList.remove('modal_opened');
 }
 
-function closeEditProfileModal() {
+function closeEditProfileModal() { // basic catch-all closing function 
     closeModal(editProfilePopup);
-    saveButton.classList.remove("saveForAdd"); //removes the ghost class, just in case it was added
+    dumpCardPreview(); //just in case we are dealing with photo preview
+    saveButton.classList.remove("saveForAdd"); //removes the ghost class, in case it was added
 }
 
-profileCloseModal.addEventListener("click", closeEditProfileModal);
+profileCloseModal.addEventListener("click", closeEditProfileModal); //this x button is getting a lot of use so the handle is packed.
 
-/*(4.2)saving/submitting*/
+// (5.6) closing photo modal and dumping---------------------------------------------------
+
+function dumpCardPreview() {
+  closeModal(cardPreview);
+  cardPortrait.src = "";
+  cardPortrait.alt = "";
+  cardSubtitle.textContent = "";
+}
+
+/*(4.2)saving/submitting for profile modal*/// ----------------------------------------------
 
 function fillProfileInfo() {
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
 }
 
-//(5.3) adding photos/submitting with the add photo form
+function handleProfileFormSubmit(event) {
+    event.preventDefault();
+    if (saveButton.classList.contains("saveForAdd")) { //(5.3) for when the modal is up for adding photos        
+        renderCard(makeNewPhoto());
+        initialCards.shift(makeNewPhoto()); //add the new object to the array in case it needs to be nuked
+        closeEditProfileModal();
+     } 
+    else { 
+        fillProfileInfo();
+        closeModal(editProfilePopup);
+    }
+} //running as an if/else becuase there are two, and only two, outcomes to hitting save
+
+saveButton.addEventListener("submit", handleProfileFormSubmit);
+
+//(5.3) adding photos/submitting with the add photo form---------------------------------------
 
 function makeNewPhoto() {
     let newObject = {
@@ -159,91 +216,83 @@ function makeNewPhoto() {
     };
     newObject.name = nameField.value;
     newObject.link = aboutMeField.value;
-    return newObject;    
+    return newObject;
 }
 
-function handleProfileFormSubmit(event) {
-    event.preventDefault();
-    if (saveButton.classList.contains("saveForAdd")) { //(5.3) when the modal is up for adding photos        
-        renderCard(makeNewPhoto()); //there's an xibit joke in here somewhere about functions in your functions
-        closeEditProfileModal(editProfilePopup);
-     } 
-    else { 
-        fillProfileInfo();     
-        closeModal(editProfilePopup);
-    }
-}
+/*(4.3)rendering card(s)*///------------------------------------------------------------------
 
-saveButton.addEventListener("submit", handleProfileFormSubmit);
-
-/*(4.3)rendering card*/
-
-function getCardElement(data) {
-    cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);    
+function getCardElement(data) { 
+    cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);   
     cardImage = cardElement.querySelector('.cards__image');    
     cardImage.src = data.link; 
     cardImage.alt = data.name;
     cardTitle = cardElement.querySelector('.cards__title');        
     cardTitle.textContent = data.name;
+    cardElement.id = cardImage.alt.slice(0, 4) + "LK";    
     return cardElement;
 }
 
-// (5.3) part of adding a new card
+// (5.3) adding a new card-----------------------------------------------------------------
 
-function getNewCardElement(object) { //can't just use the one above as is
-    cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);    
+/*function getNewCardElement(object) { 
+    cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);
     cardImage = cardElement.querySelector('.cards__image');
     cardImage.src = object.link;
     cardImage.alt = object.name;
-    cardTitle = cardElement.querySelector('.cards__title');        
+    cardTitle = cardElement.querySelector('.cards__title');
     cardTitle.textContent = object.name;
     return cardElement;
+}*/ //do I really need this? I don't think I do. Have made the adjustments. Mark for Delete
+
+function renderCard(item) {
+    getCardElement(item);
+    cardImplement.prepend(cardElement);
 }
 
-/*(4.3)implementing card*/
+/*(4.3)implementing card*/ //the old way
 /*for (i=0; i < initialCards.length; i++) {
     getCardElement(i);
     cardImplement.append(cardElement);
-}*/ //the old way
+}*/ 
 
-//5.1 rendering/implementing cards with a forEach() instead of for loop
-
-function renderCard(item) {
-    getNewCardElement(item);
-    cardImplement.prepend(cardElement);
-}
+//5.1 rendering/implementing cards with a forEach instead of for loop------------------------------
 
 initialCards.forEach(function (item) {
     getCardElement(item);
     cardImplement.append(cardElement);
 });
 
-//(5.4) the like button
+//(5.4) the like button------------------------------------------------------------------------
 
 function handleLikeButtonClick() {
     cardLikeButton.src = "images/union.svg";
 }
+/**/
+//cardLikeButton.addEventListener("click", handleLikeButtonClick);
 
-cardLikeButton.addEventListener("click", handleLikeButtonClick);
-
-//(5.5) Deleting cards
+//(5.5) Deleting cards--------------------------------------------------------------------------
 //I'm mostly just sketching this out
 
-function handleCardDelete(event) {
+/*function handleCardDelete(event) {
   let markForDelete = event.target;//OK so the idea is this tells which delete button is pressed...
   let cardTarget = markForDelete.parentElement; //...and then it looks for the parent of the delete button. (That is, the card).
   cardTarget.setAttribute("style", "display: none"); //Once it knows the parent of the delete button it disables the card which isn't precisely the same as deleting it but I think it's close enough.  
+}*/
+
+//rewriting this- I think the key is to remove the appropriate element from the array and have the array rendered again
+
+function handleCardDelete() {
+//ok it needs to identify the member of the array that matches the target, then removes them from the array, then rerenders the array
+  targetCardElement();
+  removeTargetCard();
+  initialCards.forEach(function (item) {
+    getCardElement(item);
+    cardImplement.append(cardElement);
+});
 }
 
-deleteButton.addEventListener("click", handleCardDelete); //might have to make this submit instead of click depending on how I set up the del button.
+//actually I may have been on to something just removing the elements, not screwing with the array. UGH.
 
-//(5.6) enlargin pics
+/**/
+//deleteButton.addEventListener("click", handleCardDelete); //might have to make this submit instead of click depending on how I set up the del button.
 
-function handleImageClick(event) {
-    imageSelected = event.target;
-    
-    editProfilePopup.prepend(imageSelected);
-        
-}
-
-cardImageButton.addEventListener("click", handleImageClick);

@@ -129,6 +129,43 @@
     opacity: 80%;
 }
 
+/*modal preview*/
+
+.modal__preview { /*copying box for now*/
+    display: none;
+    flex-direction: column;
+    max-width: 430px;
+    width: 100%;
+    align-items: center;    
+    max-height: 330px;
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;    
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: white;    
+    position: relative;
+    top: 48.8%;
+    left: 15.5%;
+    border-style: none;
+    border-width: 0;
+    border-color: black;
+    border-radius: 5px;
+
+}
+
+.modal__image {
+
+}
+
+.modal__subtitle {
+
+}
+
+.modal__image-button {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 @media screen and (max-width: 1170px) {
 

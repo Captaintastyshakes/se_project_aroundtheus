@@ -22,8 +22,18 @@
     object-fit: cover;
     object-position: center;
     height: 282px;
-    cursor: pointer;
+    cursor: pointer;    
 }
+
+/*.cards__image-button {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+    height: 100%;
+    width: 100%;
+}*/
 
 .cards__content {
     display: flex;
