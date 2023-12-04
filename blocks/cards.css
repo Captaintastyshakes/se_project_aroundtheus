@@ -18,7 +18,7 @@
     justify-content: flex-end;    
 }
 
-.cards__image {    
+.cards__image {
     object-fit: cover;
     object-position: center;
     height: 282px;

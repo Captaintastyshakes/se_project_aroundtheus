@@ -133,6 +133,7 @@
 
 .modal__preview { /*copying box for now*/
     display: none;
+    /*display: flex;*/
     flex-direction: column;
     max-width: 430px;
     width: 100%;
@@ -160,11 +161,6 @@
 
 .modal__subtitle {
 
-}
-
-.modal__image-button {
-    padding-left: 0;
-    padding-right: 0;
 }
 
 @media screen and (max-width: 1170px) {

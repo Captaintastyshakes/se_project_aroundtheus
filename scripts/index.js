@@ -76,7 +76,7 @@ const modalHeader = document.querySelector('.modal__header');
 
 //(5.4) the like button
 
-const cardLikeButton = document.querySelector('.cards__like-button');
+//const cardLikeButton = document.querySelector('.cards__like-button');
 
 //(5.5) delete photo elements
 
@@ -86,9 +86,9 @@ const deleteButton = document.querySelector('.cards__delete-button');
 
 //let cardImageButton = document.getElementById('#'); //do I need to make this an actual button? Or will the click event work fine?
 
-let cardImageButton = document.querySelector('.cards__image');
+//let cardImageButton = document.querySelector('.cards__image');
 
-console.log(cardImageButton + "is ok");
+//console.log(cardImageButton + "is ok");
 
 const cardPreview = document.querySelector('.modal__preview');
 
@@ -143,18 +143,35 @@ cardAddButton.addEventListener("click", handleAddButtonClick);
 
 //(5.6) opening photo preview modal------------------------------------------------
 
-function fillCardPreview(event) {
+/*function fillCardPreview(event) {
     cardTarget = event.target; //do I need to be more granular with selection?
     cardTargetImage = cardTarget.querySelector('.cards__image'); //or whatever the right target is
-    cardTargetImage = document.querySelector('.cards__image');
-    cardPortrait.src = cardTargetImage.src;
+    //cardTargetImage = document.querySelector('.cards__image');
+    cardPortrait.src = `${cardTargetImage.src}`;
     cardPortrait.alt = cardTargetImage.title;
     cardSubtitle.textContent = cardTargetImage.title;
-}
+}*/
 
-function handlePhotoClick(event) {
-    openModal(cardPreview);
-    fillCardPreview(event);
+function fillCardPreview() {
+    cardPortrait.src = cardImage.src;
+    cardPortrait.alt = cardImage.alt;
+    cardSubtitle.textContent = cardImage.alt;
+};
+
+function supressOtherModalOpening() {
+    saveButton.setAttribute("style", "display: none;");
+};
+
+function openCardPreview() {
+    cardPreview.setAttribute("style", "display: flex");
+};
+
+function handlePhotoClick() {
+    openModal(editProfilePopup);
+    fillCardPreview();
+    supressOtherModalOpening();
+    openCardPreview();
+    console.log("It's cliiiiicking");
 }
 
 
@@ -171,19 +188,25 @@ function  closeModal(modal) {
 function closeEditProfileModal() { // basic catch-all closing function 
     closeModal(editProfilePopup);
     dumpCardPreview(); //just in case we are dealing with photo preview
+    expressOtherModalOpening(); //reverse hiding the base modal
     saveButton.classList.remove("saveForAdd"); //removes the ghost class, in case it was added
+
 }
 
 profileCloseModal.addEventListener("click", closeEditProfileModal); //this x button is getting a lot of use so the handle is packed.
 
 // (5.6) closing photo modal and dumping---------------------------------------------------
 
-function dumpCardPreview() {
-  closeModal(cardPreview);
+function dumpCardPreview() {  
   cardPortrait.src = "";
   cardPortrait.alt = "";
   cardSubtitle.textContent = "";
+  cardPreview.setAttribute("style", "display: none");
 }
+
+function expressOtherModalOpening() {
+    saveButton.removeAttribute("style", "display: none");
+};
 
 /*(4.2)saving/submitting for profile modal*/// ----------------------------------------------
 
@@ -223,12 +246,17 @@ function makeNewPhoto() {
 
 function getCardElement(data) { 
     cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);   
-    cardImage = cardElement.querySelector('.cards__image');    
+    cardImage = cardElement.querySelector('.cards__image');
+    cardDeleteButton = cardElement.querySelector('.cards__delete-button')
     cardImage.src = data.link; 
     cardImage.alt = data.name;
-    cardTitle = cardElement.querySelector('.cards__title');        
+    cardTitle = cardElement.querySelector('.cards__title');
     cardTitle.textContent = data.name;
-    cardElement.id = cardImage.alt.slice(0, 4) + "LK";    
+    cardElement.id = cardImage.alt.slice(0, 4) + "LK";//assigning a generated id, just in case
+    cardDeleteButton.addEventListener("click", handleCardDelete);
+    cardImage.addEventListener("click", handlePhotoClick);
+    cardLikeButton = cardElement.querySelector('.cards__like-button');
+    cardLikeButton.addEventListener("click", handleLikeButtonClick);
     return cardElement;
 }
 
@@ -281,7 +309,7 @@ function handleLikeButtonClick() {
 
 //rewriting this- I think the key is to remove the appropriate element from the array and have the array rendered again
 
-function handleCardDelete() {
+/*function handleCardDelete() {
 //ok it needs to identify the member of the array that matches the target, then removes them from the array, then rerenders the array
   targetCardElement();
   removeTargetCard();
@@ -289,10 +317,13 @@ function handleCardDelete() {
     getCardElement(item);
     cardImplement.append(cardElement);
 });
-}
+}*/
 
 //actually I may have been on to something just removing the elements, not screwing with the array. UGH.
 
 /**/
 //deleteButton.addEventListener("click", handleCardDelete); //might have to make this submit instead of click depending on how I set up the del button.
 
+function handleCardDelete() {
+    console.log("It's clicking.");
+};
