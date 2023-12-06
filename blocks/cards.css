@@ -80,10 +80,10 @@
     width: 18px;
     opacity: 100%;
     background: none;
-    border: none;    
+    border: none;
     transition: opacity 1s;
     position: relative;
-    left: 225px;    
+    left: 225px;
     top: 35px;
     cursor: pointer;
 }
@@ -94,7 +94,7 @@
 
 @media screen and (max-width: 1200px) {
     .cards__delete-button {
-        left: 200px
+        left: 200px;
     }
 }
 
