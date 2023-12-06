@@ -123,7 +123,7 @@
         margin-right: 0;
         margin-bottom: 0;
         margin-left: 0;
-        white-space-collapse: collapse;
+        /*white-space-collapse: collapse;*//*suto checker doesn't like this i guess*/
         min-width: 0;
         padding-left: 15px;
         padding-top: 2px;
