@@ -107,7 +107,7 @@ function openModal(modal) {
 function fillProfileForm() {
     nameField.value = profileName.textContent;
     aboutMeField.value = profileOccupation.textContent;
-    modalHeader.textContent = "Edit profile";
+    //modalHeader.textContent = "Edit profile";
 }
 
 function handleEditProfileButtonClick() {

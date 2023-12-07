@@ -1,4 +1,5 @@
 .add {    
+    /*display: none;*/
     background: #00000080;
     width: 100%;
     height: 200%;
@@ -30,7 +31,8 @@
 }
 
 .add__box {    
-    display: flex;
+    /*display: flex;*/
+    display: none;
     flex-direction: column;
     max-width: 430px;
     width: 100%;
