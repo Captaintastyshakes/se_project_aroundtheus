@@ -40,17 +40,23 @@ const initialCards = [
 
 /*--variables--*/ //--------------------------------------
 
-/*(4.0) for opening and closing functions*/
+/*opening and closing*/
 
-const editProfileButton = document.querySelector('.profile__edit-button');
+const editProfileButton = document.querySelector('.profile__edit-button'); //4.0
 
-const profileCloseModal = document.querySelector('section.profile .modal__exit');
+const cardAddButton = document.querySelector('.profile__add-button'); //5.2
 
-const addPhotoCloseModal = document.querySelector('section.cards .add__exit');
+const profileCloseModal = document.querySelector('section.profile .modal__exit'); //4.0
 
-const cardPreviewCloseModal = document.querySelector('section.cards .preview__exit');
+const addPhotoCloseModal = document.querySelector('section.profile .add__exit'); //5.2
 
-const editProfilePopup = document.querySelector('.modal'); //the profile modal
+const cardPreviewCloseModal = document.querySelector('.preview__exit'); //5.2
+
+const editProfilePopup = document.querySelector('.modal'); //4.0
+
+const addPhotoPopup = document.querySelector('.add');
+
+const cardPreviewPopup = document.querySelector('.preview');
 
 /*(4.1)for populating form fields*/
 
@@ -78,19 +84,9 @@ const cardTemplate = document.querySelector('#card').content;
 
 const cardImplement = document.querySelector('.cards');
 
-//(5.2) modal for add photos
-
-const cardAddButton = document.querySelector('.profile__add-button');
-
-//const modalHeader = document.querySelector('.modal__header');
-
-const addPhotoPopup = document.querySelector('.add');
-
 //(5.6) card preview modal
 
-const cardPreviewPopup = document.querySelector('.preview');
-
-const cardPreview = document.querySelector('.preview__main');
+const cardPreview = document.querySelector('.preview__box');
 
 const cardPortrait = document.querySelector('.preview__image');
 
@@ -98,16 +94,15 @@ const cardSubtitle = document.querySelector('.preview__subtitle');
 
 /*--functions--*/ //------------------------------------------------------------------------------------------
 
-/*(4.0)opening edit profile modal/basics*///-------------------------------------
+/*opening edit profile modal*///-------------------------------------
 
 function openModal(modal) {    
-    modal.classList.add('modal_opened');
+    modal.classList.add('modal_opened');      
 }
 
 function fillProfileForm() {
     nameField.value = profileName.textContent;
-    aboutMeField.value = profileOccupation.textContent;
-    //modalHeader.textContent = "Edit profile";
+    aboutMeField.value = profileOccupation.textContent;    
 }
 
 function handleEditProfileButtonClick() {
@@ -120,23 +115,15 @@ editProfileButton.addEventListener("click", handleEditProfileButtonClick);
 
 // (5.2) opening modal for photo add -----------------------------------------
 
-/*function changeModalToAdd () {
-    modalHeader.textContent = "New Place";
-    nameField.value = "";
-    nameField.placeholder = "Title";
-    aboutMeField.value = "";
-    aboutMeField.placeholder = "Image URL";
-}*/
+function dumpAddPhotoFields() {
+    titleField.value = "";
+    imageURLField.value = "";
+}
 
-/*function changeSaveToAdd () { 
-    saveButton.classList.add('saveForAdd');
-}*/
 
 function handleAddButtonClick() {
     openModal(addPhotoPopup);
-    //changeModalToAdd();
-    //changeSaveToAdd();
-    //suppressCardPreview();
+    dumpAddPhotoFields();    
 }
 
 cardAddButton.addEventListener("click", handleAddButtonClick);
@@ -150,28 +137,12 @@ function fillCardPreview(event) {
     cardSubtitle.textContent = selectedCard.alt;
 };
 
-/*function supressOtherModalOpening() {    
-    saveButton.setAttribute("style", "visibility: hidden");    
-};*/
-
-//
-/*function openCardPreview() {    
-    cardPreview.setAttribute("style", "visibility: visible");
-    cardPreview.setAttribute("style", "display: flex");
-};*///re-evaluate
-
 function handlePhotoClick(event) {
     openModal(cardPreviewPopup);
-    fillCardPreview(event);
-    //supressOtherModalOpening();
-    //openCardPreview();
+    fillCardPreview(event);    
 }
 
-/*function suppressCardPreview() {
-    cardPreview.setAttribute("style", "display: none");
-}*/
-
-/*(4.0)closing modal*///---------------------------------------------------------------
+/*closing modal*///---------------------------------------------------------------
 
 function  closeModal(modal) {
     modal.classList.remove('modal_opened');
@@ -182,7 +153,7 @@ function closeEditProfileModal() {
 }
 
 function closeAddPhotoModal() {
-    closeModal(addPhotoPopup);    
+    closeModal(addPhotoPopup);
 }
 
 function closeCardPreviewModal() {
@@ -191,41 +162,16 @@ function closeCardPreviewModal() {
 
 profileCloseModal.addEventListener("click", closeEditProfileModal);
 
-profileCloseModal.addEventListener("click", closeAddPhotoModal);
+addPhotoCloseModal.addEventListener("click", closeAddPhotoModal);
 
-profileCloseModal.addEventListener("click", closeCardPreviewModal);
+cardPreviewCloseModal.addEventListener("click", closeCardPreviewModal);
 
-// (5.6) closing photo modal---------------------------------------------------
-
-/*function dumpCardPreview() {
-  cardPreview.removeAttribute("style", "visibility: visible");
-  cardPreview.setAttribute("style", "display: none");
-}*/
-
-/*function expressOtherModalOpening() {
-    saveButton.removeAttribute("style", "display: none");
-    saveButton.removeAttribute("style", "visibility: hidden");
-};*/
-
-/*(4.2)saving/submitting for profile modal*/// ----------------------------------------------
+/*saving/submitting*/// ----------------------------------------------
 
 function fillProfileInfo() {
     profileName.textContent = nameField.value;
     profileOccupation.textContent = aboutMeField.value;
 }
-
-/*function handleProfileFormSubmit(event) {
-    event.preventDefault();
-    /*if (saveButton.classList.contains("saveForAdd")) {
-        renderCard(makeNewPhoto());
-        initialCards.shift(makeNewPhoto()); //add the new object to the array in case it needs to be nuked
-        closeEditProfileModal();
-     }
-    //else { 
-        fillProfileInfo();
-        closeModal(editProfilePopup);
-    //}
-}*/
 
 function handleProfileFormSubmit(event) {
     event.preventDefault();
@@ -236,8 +182,8 @@ function handleProfileFormSubmit(event) {
 function handleAddPhotoSubmit(event) {
     event.preventDefault();
     renderCard(makeNewPhoto());
-        initialCards.shift(makeNewPhoto()); //add the new object to the array in case it needs to be nuked
-        closeCardPreviewModal();
+    initialCards.shift(makeNewPhoto()); //add the new object to the array, just in case
+    closeAddPhotoModal();    
 }
 
 saveButtonProfile.addEventListener("submit", handleProfileFormSubmit);
@@ -269,7 +215,7 @@ function getCardElement(data) {
     cardImage.alt = data.name;
     cardTitle = cardElement.querySelector('.cards__title');
     cardTitle.textContent = data.name;
-    cardElement.id = cardImage.alt.slice(0, 4) + "LK";//assigning a generated id, just in case. Also helps with logging if targets are working.    
+    cardElement.id = cardImage.alt.slice(0, 4) + "LK";//assigning a generated id, just in case. Also helps with logging if targets are working.
     cardDeleteButton.addEventListener("click", handleCardDelete);
     cardImage.addEventListener("click", handlePhotoClick);    
     cardLikeButton.addEventListener("click", handleLikeButtonClick);

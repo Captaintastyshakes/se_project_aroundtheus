@@ -38,29 +38,31 @@
                     </label>
                     <button class="modal__save" type="submit">Save</button>
                 </form>                
-            </div>            
+            </div>
+            <div class="add">            
+                <button type="button" class="add__exit">
+                    <img class="add__close" src="images/Close-Icon.svg" alt="Close">
+                </button>
+                <form class="add__box">
+                    <h3 class="add__header">New Place</h3>
+                    <label class="add__label" for="name">
+                        <input type="text" class="add__input" id="title" placeholder="Title" required>
+                    </label>
+                    <label class="add__label" for="about_me">
+                        <input type="text" class="add__input" id="image_url" placeholder="Image URL" required>
+                    </label>
+                    <button class="add__save" type="submit">Save</button>
+                </form>                
+            </div>      
         </section>
-        <div class="add">            
-            <button type="button" class="add__exit">
-                <img class="add__close" src="images/Close-Icon.svg" alt="Close">
-            </button>
-            <form class="add__box">
-                <h3 class="add__header">New Place</h3>
-                <label class="add__label" for="name">
-                    <input type="text" class="add__input" id="title" placeholder="Title" required>
-                </label>
-                <label class="add__label" for="about_me">
-                    <input type="text" class="add__input" id="image_url" placeholder="Image URL" required>
-                </label>
-                <button class="add__save" type="submit">Save</button>
-            </form>                
-        </div>
         <div class="preview">
-            <button type="button" class="preview__exit">
-                <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
-            </button>                
-            <img class="preview__image" src="#" alt="">
-            <h3 class="preview__subtitle"></h3>
+            <div class="preview__box">
+                <button type="button" class="preview__exit">
+                    <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
+                </button>                
+                <img class="preview__image" src="#" alt="">
+                <h3 class="preview__subtitle"></h3>
+            </div>            
         </div>
         <section class="cards">            
         </section>
