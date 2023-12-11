@@ -11,7 +11,7 @@
     flex-direction: column;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.5s, z-index 0.5s 0s;    
+    transition: opacity 0.5s, z-index 0.5s 0s;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;

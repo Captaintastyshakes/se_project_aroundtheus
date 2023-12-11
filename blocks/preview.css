@@ -12,7 +12,6 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s, z-index 0.5s 0s;
-    flex-direction: column;
     justify-content: center;
     align-content: center;
     align-self: center;
