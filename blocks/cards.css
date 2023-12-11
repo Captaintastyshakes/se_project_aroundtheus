@@ -82,10 +82,12 @@
     background: none;
     border: none;
     transition: opacity 1s;
-    position: relative;
-    left: 225px;
-    top: 35px;
+    align-self: end;
+    position: relative;    
+    top: 25px;
+    right: 10px;
     cursor: pointer;
+    padding: 0;
 }
 
 .cards__delete-button:hover {
