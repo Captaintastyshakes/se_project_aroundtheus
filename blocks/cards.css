@@ -6,7 +6,7 @@
     grid-template-rows: repeat(2, 1fr);
     column-gap: 17px;
     row-gap: 20px;
-    align-content: center;    
+    align-content: center;
 }
 
 .cards__card {
@@ -15,14 +15,14 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;    
+    justify-content: flex-end;
 }
 
 .cards__image {
     object-fit: cover;
     object-position: center;
     height: 282px;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .cards__content {
@@ -34,7 +34,7 @@
     font-size: 24px;
     font-weight: 900;
     line-height: 29px;
-    letter-spacing: 0em;    
+    letter-spacing: 0em;
 }
 
 .cards__title {
@@ -72,7 +72,7 @@
 }
 
 .cards__like-button:hover {
-    opacity: 50%;    
+    opacity: 50%;
 }
 
 .cards__delete-button {
@@ -83,7 +83,7 @@
     border: none;
     transition: opacity 1s;
     align-self: end;
-    position: relative;    
+    position: relative;
     top: 25px;
     right: 10px;
     cursor: pointer;
@@ -117,7 +117,7 @@
 }
 
 @media screen and (max-width: 890px) {
-    .cards {        
+    .cards {
         height: auto;
         grid-template-columns: 100%;
         grid-template-rows: repeat(6, 1fr);

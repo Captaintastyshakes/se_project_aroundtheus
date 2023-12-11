@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Around the U.S.</title>
     <link rel="stylesheet" href="./pages/index.css"> 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">     
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta name="description" content="The 'Around the U.S.' site I did for Tripleten.">
     <meta name="keywords" content="Around-the-U.S. tripleten project">
     <meta name="author" content="Michael Weihmann">
@@ -22,9 +22,9 @@
                 <h1 class="profile__name">Jacques Cousteau</h1>
                 <button type="button" class="profile__edit-button"><img class="profile__edit-image" src="images/Edit-Button.svg" alt="Edit button"></button>
                 <p class="profile__occupation">Explorer</p>
-            </div>                        
+            </div>
             <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="images/addbutton.svg" alt="Add photos"></button>
-            <div class="modal">                
+            <div class="modal">
                 <button type="button" class="modal__exit">
                     <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
                 </button>
@@ -37,9 +37,9 @@
                         <input type="text" class="modal__input" id="about_me" placeholder="Description" required>
                     </label>
                     <button class="modal__save" type="submit">Save</button>
-                </form>                
+                </form>
             </div>
-            <div class="add">            
+            <div class="add">
                 <button type="button" class="add__exit">
                     <img class="add__close" src="images/Close-Icon.svg" alt="Close">
                 </button>
@@ -52,19 +52,19 @@
                         <input type="text" class="add__input" id="image_url" placeholder="Image URL" required>
                     </label>
                     <button class="add__save" type="submit">Create</button>
-                </form>                
+                </form>
             </div>
             <div class="preview">
                 <div class="preview__box">
                     <button type="button" class="preview__exit">
                         <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
-                    </button>                
+                    </button>
                     <img class="preview__image" src="#" alt="">
                     <h3 class="preview__subtitle"></h3>
-                </div>            
+                </div>
             </div>
-        </section>        
-        <section class="cards">   
+        </section>
+        <section class="cards">
         </section>
         </main>
         <footer class="footer">
@@ -73,12 +73,12 @@
     </div>
     <template id="card">
         <div class="cards__card">
-            <button type="button" class="cards__delete-button"><img src="images/Trash.svg" alt="Delete photo"></button>            
-                <img class="cards__image" src="" alt="">            
+            <button type="button" class="cards__delete-button"><img src="images/Trash.svg" alt="Delete photo"></button>
+                <img class="cards__image" src="" alt="">
             <div class="cards__content">
                 <h2 class="cards__title"></h2>
                 <button type="button" class="cards__like-button"><img src="images/Vector.svg" alt="Like!"></button>
-            </div>    
+            </div>
         </div>
     </template>
     <script src="scripts/index.js" defer></script>

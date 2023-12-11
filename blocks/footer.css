@@ -22,13 +22,13 @@
 }
 
 @media screen and (max-width: 890px) {
-    .footer {        
+    .footer {
         font-size: 14px;
         line-height: 17px;
         padding-left: 19px;
         padding-right: 19px;
         padding-top: 48px;
-        max-width: 282px;        
+        max-width: 282px;
     }
 
 

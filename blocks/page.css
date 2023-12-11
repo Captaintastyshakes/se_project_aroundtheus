@@ -1,4 +1,4 @@
-.page {        
+.page {
     max-width: 100%;
     background: #000000;
     display: flex;
@@ -9,17 +9,17 @@
     padding-left: 200px;
     padding-right: 200px;
     padding-bottom: 45px;
-    box-sizing: content-box;    
+    box-sizing: content-box;
 }
 
 @media screen and (max-width: 590px) {
-    .page {            
+    .page {
         width: 100%;
         min-width: 320px;
         padding-top: 28px;
         padding-bottom: 30px;
         padding-left: 0;
-        padding-right: 0;        
+        padding-right: 0;
     }
 }
 

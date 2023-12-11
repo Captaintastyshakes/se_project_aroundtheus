@@ -97,12 +97,12 @@ const cardSubtitle = document.querySelector('.preview__subtitle');
 /*opening edit profile modal*///-------------------------------------
 
 function openModal(modal) {    
-    modal.classList.add('modal_opened');      
+    modal.classList.add('modal_opened');
 }
 
 function fillProfileForm() {
     nameField.value = profileName.textContent;
-    aboutMeField.value = profileOccupation.textContent;    
+    aboutMeField.value = profileOccupation.textContent;
 }
 
 function handleEditProfileButtonClick() {
@@ -123,7 +123,7 @@ function dumpAddPhotoFields() {
 
 function handleAddButtonClick() {
     openModal(addPhotoPopup);
-    dumpAddPhotoFields();    
+    dumpAddPhotoFields();
 }
 
 cardAddButton.addEventListener("click", handleAddButtonClick);
@@ -139,7 +139,7 @@ function fillCardPreview(event) {
 
 function handlePhotoClick(event) {
     openModal(cardPreviewPopup);
-    fillCardPreview(event);    
+    fillCardPreview(event);
 }
 
 /*closing modal*///---------------------------------------------------------------
@@ -149,7 +149,7 @@ function  closeModal(modal) {
 }
 
 function closeEditProfileModal() {
-    closeModal(editProfilePopup);    
+    closeModal(editProfilePopup);
 }
 
 function closeAddPhotoModal() {
@@ -183,7 +183,7 @@ function handleAddPhotoSubmit(event) {
     event.preventDefault();
     renderCard(makeNewPhoto());
     initialCards.shift(makeNewPhoto()); //add the new object to the array, just in case
-    closeAddPhotoModal();    
+    closeAddPhotoModal();
 }
 
 saveButtonProfile.addEventListener("submit", handleProfileFormSubmit);
@@ -217,7 +217,7 @@ function getCardElement(data) {
     cardTitle.textContent = data.name;
     cardElement.id = cardImage.alt.slice(0, 4) + "LK";//assigning a generated id, just in case. Also helps with logging if targets are working.
     cardDeleteButton.addEventListener("click", handleCardDelete);
-    cardImage.addEventListener("click", handlePhotoClick);    
+    cardImage.addEventListener("click", handlePhotoClick);
     cardLikeButton.addEventListener("click", handleLikeButtonClick);
     return cardElement;
 }
@@ -239,15 +239,15 @@ initialCards.forEach(function (item) {
 //(5.4) the like button------------------------------------------------------------------------
 
 function changeLike() {    
-    likeBinary.src = "images/Union.svg";        
+    likeBinary.src = "images/Union.svg";
 }
 
 function changeLiked() {
-    likeBinary.src = "images/Vector.svg";     
+    likeBinary.src = "images/Vector.svg";
 }
 
 function handleLikeButtonClick(event) {
-    likeBinary = event.target;        
+    likeBinary = event.target;
     if (likeBinary.src.includes("Vector")) {
         changeLike()
     }
@@ -261,5 +261,5 @@ function handleLikeButtonClick(event) {
 function handleCardDelete(event) {
     markForDelete = event.target;
     deleteTarget = markForDelete.closest(".cards__card");
-    deleteTarget.remove();    
+    deleteTarget.remove();
 };
