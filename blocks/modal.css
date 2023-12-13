@@ -128,7 +128,7 @@
     opacity: 80%;
 }
 
-@media screen and (max-width: 890px) {    
+@media screen and (max-width: 890px) {
 
     .modal__box {
         align-self: center;

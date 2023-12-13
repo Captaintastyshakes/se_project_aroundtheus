@@ -75,6 +75,10 @@
     opacity: 50%;
 }
 
+.card__like-button_active {
+    background-image: url(/images/Union.svg);
+}
+
 .cards__delete-button {
     height: 18px;
     width: 18px;
@@ -94,25 +98,10 @@
     opacity: 60%;
 }
 
-@media screen and (max-width: 1200px) {
-    .cards__delete-button {
-        left: 200px;
-    }
-}
-
 @media screen and (max-width: 1170px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-    }
-    .cards__delete-button {
-        left: 300px;
-    }    
-}
-
-@media screen and (max-width: 1080px) {
-    .cards__delete-button {
-        left: 200px;
     }
 }
 
@@ -129,9 +118,5 @@
         margin-left: auto;
         margin-right: auto;
         min-width: 282px;
-    }
-    
-    .cards__delete-button {
-        left: 230px;
     }
 }
