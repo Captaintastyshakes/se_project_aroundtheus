@@ -92,11 +92,11 @@ const cardImplement = document.querySelector('.cards');
 
 //(5.6) card preview modal
 
-const cardPreview = document.querySelector('.preview__box');
+const cardPreview = document.querySelector('.preview-popup__box');
 
-const cardPortrait = document.querySelector('.preview__image');
+const cardPortrait = document.querySelector('.preview-popup__image');
 
-const cardSubtitle = document.querySelector('.preview__subtitle');
+const cardSubtitle = document.querySelector('.preview-popup__subtitle');
 
 /*--functions--*/ //------------------------------------------------------------------------------------------
 
