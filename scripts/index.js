@@ -225,3 +225,21 @@ function handleCardDelete(event) {
     const deleteTarget = markForDelete.closest(".cards__card");
     deleteTarget.remove();
 };
+
+// Storing all my 6.0 stuff here, will mix in after the fact to the right places.
+
+//objects
+
+//variables
+
+const closeOverlay = document.querySelector(".modal"); //(6.3) This may not work if the layers are all screwy and page is obstructed, may need to target backdrop
+
+//functions
+
+function handleOverlayClick(evt) {
+    activePopup = evt.target;
+    activePopupParent = activePopup.closest;
+    
+}
+
+closeOverlay.addEventListener("click", handleOverlayClick(evt);
