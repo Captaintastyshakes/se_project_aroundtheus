@@ -31,10 +31,12 @@
                 <form class="modal__box popup__form" name="profile-form" id="profile-form"><!--adding id's to make sure I'm selecting it properly. Also adding extra class to forms-->
                     <h3 class="modal__header">Edit profile</h3>
                     <label class="modal__label" for="name">
-                        <input type="text" class="modal__input" id="name" placeholder="Name" required>
+                        <input type="text" class="modal__input" id="name" placeholder="Name" required maxlength="40" minlength="2">
+                        <span class="modal__error" id="name-error">THIS IS AN ERROR MESSAGE FOR THE NAME INPUT.</span>
                     </label>
                     <label class="modal__label" for="about_me">
                         <input type="text" class="modal__input" id="about_me" placeholder="Description" required>
+                        <span class="modal__error" id="about_me-error">THIS IS AN ERROR MESSAGE FOR THE OCCUPATION INPUT.</span>
                     </label>
                     <button class="modal__save" type="submit">Save</button>
                 </form>
@@ -51,7 +53,7 @@
                     <label class="modal__label" for="image_url">
                         <input type="text" class="modal__input" id="image_url" placeholder="Image URL" required>
                     </label>                    
-                    <button class="modal__save" type="submit">Create</button>
+                    <button class="modal__save modal__button_disabled" type="submit" disabled>Create</button>
                 </form>
             </div>            
             <div class="modal preview-popup">
