@@ -232,14 +232,28 @@ function handleCardDelete(event) {
 
 //variables
 
-const closeOverlay = document.querySelector(".modal"); //(6.3) This may not work if the layers are all screwy and page is obstructed, may need to target backdrop
+const closeOverlay = document.querySelectorAll(".modal"); //(6.3) This may not work if the layers are all screwy and page is obstructed, may need to target backdrop
 
 //functions
 
 function handleOverlayClick(evt) {
-    activePopup = evt.target;
-    activePopupParent = activePopup.closest;
+    activeOverlay = evt.target;
+    //activePopupParent = activePopup.closest;
+    //activeModal = activeOverlay.querySelector(".modal_opened");
+    //closeModal(activeModal);
+    closeModal(activeOverlay);//Need to figure out what I am selecting, I guess
     
 }
 
-closeOverlay.addEventListener("click", handleOverlayClick(evt);
+function handleEscapePress(evt) {
+    const activeOverlay = evt.target;
+    if () {
+        closeModal(activeOverlay);
+    }
+}
+
+closeOverlay.forEach(overlay => (
+    overlay.addEventListener("click", handleOverlayClick(evt);
+    overlay.addEventListener("keydown" handleEscapePress(evt));// handle escape press while I am at it?
+));
+//overlay.addEventListener("click", handleOverlayClick(evt);
