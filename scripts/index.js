@@ -226,34 +226,57 @@ function handleCardDelete(event) {
     deleteTarget.remove();
 };
 
-// Storing all my 6.0 stuff here, will mix in after the fact to the right places.
+// Storing all my 6.0 stuff here, *may mix in after the fact to the right places.
 
 //objects
 
 //variables
 
-const closeOverlay = document.querySelectorAll(".modal"); //(6.3) This may not work if the layers are all screwy and page is obstructed, may need to target backdrop
+const closeOverlays = Array.from(document.querySelectorAll(".modal"));
+
+const pageOverlay = document.querySelector(".page");//I'm doubling up my selection for event listeners so it listens to both the active modal, (whom I don't want to interfere with the stylings of anymore than I have to but it is sitting 'in front' of the page,) and the page itself.
+
+const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 
 //functions
 
 function handleOverlayClick(evt) {
-    activeOverlay = evt.target;
-    //activePopupParent = activePopup.closest;
-    //activeModal = activeOverlay.querySelector(".modal_opened");
-    //closeModal(activeModal);
-    closeModal(activeOverlay);//Need to figure out what I am selecting, I guess
+    const activeOverlay = evt.target;    
+    closeModal(activeOverlay);
+    
+}
+
+function handlePageClick(evt) {
+    const bigOverlay = evt.target;
+    const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
+    subordinateOverlays.forEach((subordinateOverlay) => {
+        if (subordinateOverlay.classList.contains("modal_opened")) {
+            closeModal(subordinateOverlay);            
+        };
+    });
     
 }
 
 function handleEscapePress(evt) {
-    const activeOverlay = evt.target;
-    if () {
+    const activeOverlay = evt.currentTarget;
+    const escapeKey = evt.keyCode;
+    if (escapeKey === 27) {
         closeModal(activeOverlay);
-    }
+        console.log("You closed via ESCAPE.");
+    };
 }
 
-closeOverlay.forEach(overlay => (
-    overlay.addEventListener("click", handleOverlayClick(evt);
-    overlay.addEventListener("keydown" handleEscapePress(evt));// handle escape press while I am at it?
-));
-//overlay.addEventListener("click", handleOverlayClick(evt);
+function handleBoxClick(evt) {    
+    evt.stopImmediatePropagation();
+}
+
+closeOverlays.forEach((overlay) => {
+    overlay.addEventListener("click", () => closeModal(overlay));
+    overlay.addEventListener("keyDown", handleEscapePress);// handle escape press while I am at it?
+});
+
+modalBoxes.forEach((box) => {
+    box.addEventListener("click", handleBoxClick);
+});
+
+pageOverlay.addEventListener("click", handlePageClick);

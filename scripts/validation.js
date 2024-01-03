@@ -1,6 +1,6 @@
 //for all my validation needs
 
-console.log("I, (validation,) am loading just fine.");
+//console.log("I, (validation,) am loading just fine.");
 
 /*this is the project 'starter,' code.
 
@@ -21,7 +21,7 @@ enableValidation({
 //objects
 
 config = {//modifying the key values a bit to match the classes I am using, i.e. modal instead of popup.
-    formSelector: ".popup__form",//just inserted this class into the relevant forms
+    formSelector: ".popup__form",//just inserted this class into the relevant forms, didn't change it.
     inputSelector: ".modal__input",
     submitButtonSelector: ".popup__button",
     inactiveButtonClass: "modal__button_disabled",

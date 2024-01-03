@@ -130,6 +130,14 @@
     opacity: 80%;
 }
 
+/*ERROR SECTION*/
+
+.modal__button_disabled {}
+
+.modal__input_type_error {}
+
+.modal__error_visible {}
+
 @media screen and (max-width: 890px) {
 
     .modal__box {
