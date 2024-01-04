@@ -132,11 +132,24 @@
 
 /*ERROR SECTION*/
 
-.modal__button_disabled {}
+.modal__button_disabled {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #000;
+    opacity: 20%;
+}
 
 .modal__input_type_error {}
 
-.modal__error_visible {}
+.modal__error {
+    display: none;
+}
+
+.modal__error_visible {
+    display: flex;
+}
 
 @media screen and (max-width: 890px) {
 

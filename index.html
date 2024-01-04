@@ -35,10 +35,10 @@
                         <span class="modal__error" id="name-error"></span>
                     </label>
                     <label class="modal__label" for="about_me">
-                        <input type="text" class="modal__input" id="about_me" placeholder="Description" required>
+                        <input type="text" class="modal__input" id="about_me" placeholder="Description" required maxlength="200" minlength="2">
                         <span class="modal__error" id="about_me-error"></span>
                     </label>
-                    <button class="modal__save" type="submit">Save</button>
+                    <button class="modal__save modal__button_disabled" type="submit">Save</button>
                 </form>
             </div>
             <div class="modal add-popup">
@@ -48,11 +48,11 @@
                 <form class="modal__box popup__form" name="add-photo-form" id="add-photo-form">
                     <h3 class="modal__header">New Place</h3>
                     <label class="modal__label" for="title">
-                        <input type="text" class="modal__input" id="title" placeholder="Title" required>
+                        <input type="text" class="modal__input" id="title" placeholder="Title" required maxlength="30" minlength="1">
                         <span class="modal__error" id="title-error"></span>
                     </label>                    
                     <label class="modal__label" for="image_url">
-                        <input type="text" class="modal__input" id="image_url" placeholder="Image URL" required>
+                        <input type="url" class="modal__input" id="image_url" placeholder="Image URL" required>
                         <span class="modal__error" id="image_url-error"></span>
                     </label>                    
                     <button class="modal__save modal__button_disabled" type="submit" disabled>Create</button>

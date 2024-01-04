@@ -60,7 +60,7 @@ function setEventListeners(formElement, validationParameters) { //being literal 
             //console.log("input DETECTED");            
             //console.log(inputElement.validationMessage);
             checkInputValidity(formElement, validationParameters, inputElement);
-            toggleButtonState(inputElements, submitButton);
+            toggleButtonState(inputElements, submitButton, validationParameters);
         });
     });
 };
@@ -87,7 +87,7 @@ function showInputError(formElement, inputElement, {inputErrorClass, errorClass}
 }
 
 function hideInputError(formElement, inputElement, {inputErrorClass, errorClass}) {// basically a clone, mildly tweaked, of the above
-    const errorMessageElem = formElement.querySelector(`#${inputElement.id}-error`);
+    const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(inputErrorClass);
     errorMessageElement.textContent = "";
     errorMessageElement.classList.remove(errorClass);
@@ -113,7 +113,7 @@ function hideInputError(formElement, inputElement, {inputErrorClass, errorClass}
 };*///broke this out into smaller/clearer functions. See below
 
 function toggleButtonState(inputElements, submitButton, {inactiveButtonClass}) {
-    if (hasInvalidInput(inputElements)) {        
+    if (hasInvalidInput(inputElements)) {
         disableSubmitButton(submitButton, inactiveButtonClass);
     }    
     enableSubmitButton(submitButton, inactiveButtonClass);
