@@ -141,14 +141,23 @@
     opacity: 20%;
 }
 
-.modal__input_type_error {}
+.modal__input_type_error {
+    border-color: red;    
+}
 
 .modal__error {
     display: none;
+    justify-content: flex-start;
+    text-align: left;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+    color: red;
 }
 
 .modal__error_visible {
-    display: flex;
+    display: flex;    
 }
 
 @media screen and (max-width: 890px) {
