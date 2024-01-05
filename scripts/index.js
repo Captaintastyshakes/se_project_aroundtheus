@@ -257,13 +257,25 @@ function handlePageClick(evt) {
     
 }
 
-function handleEscapePress(evt) {
+/*function handleEscapePress(evt) {
     const activeOverlay = evt.currentTarget;
     const escapeKey = evt.keyCode;
     if (escapeKey === 27) {
         closeModal(activeOverlay);
         console.log("You closed via ESCAPE.");
     };
+}*/
+
+function handleEscapePress(evt) { //if the above works, why not copy?
+    const bigOverlay = evt.target;
+    const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
+    console.log("escape press function is firing, at least.");
+    console.log(evt.currentTarget.keyCode);
+    subordinateOverlays.forEach((subordinateOverlay) => {
+        if (evt.target.keyCode == 27) {
+            closeModal(subordinateOverlay);
+        };
+    });
 }
 
 function handleBoxClick(evt) {    
@@ -271,8 +283,7 @@ function handleBoxClick(evt) {
 }
 
 closeOverlays.forEach((overlay) => {
-    overlay.addEventListener("click", () => closeModal(overlay));
-    overlay.addEventListener("keyDown", handleEscapePress);// handle escape press while I am at it?
+    overlay.addEventListener("click", () => closeModal(overlay));    
 });
 
 modalBoxes.forEach((box) => {
@@ -280,3 +291,4 @@ modalBoxes.forEach((box) => {
 });
 
 pageOverlay.addEventListener("click", handlePageClick);
+pageOverlay.addEventListener("keyDown", handleEscapePress);// handle escape press while I am at it?
