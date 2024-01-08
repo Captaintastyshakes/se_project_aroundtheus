@@ -234,7 +234,7 @@ function handleCardDelete(event) {
 
 const closeOverlays = Array.from(document.querySelectorAll(".modal"));
 
-const pageOverlay = document.querySelector(".page");//I'm doubling up my selection for event listeners so it listens to both the active modal, (whom I don't want to interfere with the stylings of anymore than I have to but it is sitting 'in front' of the page,) and the page itself.
+const pageOverlay = document.querySelector(".page");
 
 const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 
@@ -243,7 +243,6 @@ const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 function handleOverlayClick(evt) {
     const activeOverlay = evt.target;    
     closeModal(activeOverlay);
-    
 }
 
 function handlePageClick(evt) {
@@ -251,35 +250,50 @@ function handlePageClick(evt) {
     const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
     subordinateOverlays.forEach((subordinateOverlay) => {
         if (subordinateOverlay.classList.contains("modal_opened")) {
-            closeModal(subordinateOverlay);            
+            closeModal(subordinateOverlay);
         };
     });
     
 }
 
-/*function handleEscapePress(evt) {
-    const activeOverlay = evt.currentTarget;
-    const escapeKey = evt.keyCode;
-    if (escapeKey === 27) {
-        closeModal(activeOverlay);
-        console.log("You closed via ESCAPE.");
-    };
-}*/
-
-function handleEscapePress(evt) { //if the above works, why not copy?
-    const bigOverlay = evt.target;
+/*function handleEscapePress(evt) { //if the above works, why not copy?
+    const bigOverlay = evt.currentTarget;    
     const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
-    console.log("escape press function is firing, at least.");
-    console.log(evt.currentTarget.keyCode);
     subordinateOverlays.forEach((subordinateOverlay) => {
-        if (evt.target.keyCode == 27) {
+        console.log(evt.keyCode);     
+        if ((evt.keyCode == 27) && (subordinateOverlay.classList.contains("modal_opened"))) {            
             closeModal(subordinateOverlay);
         };
     });
-}
+}*/
+
+/*function handleEscapePress(evt) {
+    const bigOverlay = evt.currentTarget;
+    const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));    
+    subordinateOverlays.forEach((subordinateOverlay) => {        
+        if (subordinateOverlay.classList.contains("modal_opened")) {            
+            if (evt.keyCode == 27) {
+            closeModal(subordinateOverlay);            
+            };
+        };
+    });
+}*/
+
+/*function handleEscapePress(evt) {
+    console.log(evt.currentTarget);
+    if (evt.keyCode == 27) {
+        closeModal(evt.currentTarget);
+    };
+}*/
+
+/*function handleEscapePress(evt) {
+    const bigOverlay = evt.currentTarget;
+    console.log(evt.bigOverlay);
+}*/ //for some reason I can't get it to work with the preview modal
 
 function handleBoxClick(evt) {    
     evt.stopImmediatePropagation();
+    //evt.stopPropagation();
 }
 
 closeOverlays.forEach((overlay) => {
@@ -291,4 +305,9 @@ modalBoxes.forEach((box) => {
 });
 
 pageOverlay.addEventListener("click", handlePageClick);
-pageOverlay.addEventListener("keyDown", handleEscapePress);// handle escape press while I am at it?
+
+//pageOverlay.addEventListener("keydown", handleEscapePress);
+
+closeOverlays.forEach((overlay) => {
+    overlay.addEventListener("keydown", handleEscapePress);
+});
