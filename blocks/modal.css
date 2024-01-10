@@ -152,19 +152,8 @@
 }
 
 .modal__input_type_error {
-    border-color: red;    
+    border-color: red;
 }
-
-/*
-row gap to modal box, between 40 and 48 px
-remove/zero margin from modal input last of type, modal header and media check for modal header
-add width property to error- 85% seems good
-consider changin max height on modal box and removing margin from modal save
-
-OK maybe just make modal box have justify content: space between and keep margin on save button- maybe down it a bit, tho, maybe 20px
-still zero margin on inputs and header
-still add width restrictor to error message
-*/
 
 .modal__error {
     display: none;
@@ -180,7 +169,7 @@ still add width restrictor to error message
 }
 
 .modal__error_visible {
-    display: flex;    
+    display: flex;
 }
 
 @media screen and (max-width: 890px) {

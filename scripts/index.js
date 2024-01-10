@@ -240,11 +240,6 @@ const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 
 //functions
 
-function handleOverlayClick(evt) {
-    const activeOverlay = evt.target;    
-    closeModal(activeOverlay);
-}
-
 function handlePageClick(evt) {
     const bigOverlay = evt.target;
     const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
@@ -256,58 +251,33 @@ function handlePageClick(evt) {
     
 }
 
-/*function handleEscapePress(evt) { //if the above works, why not copy?
+pageOverlay.addEventListener("click", handlePageClick);
+
+function handleEscapePress(evt) {
     const bigOverlay = evt.currentTarget;    
     const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
     subordinateOverlays.forEach((subordinateOverlay) => {
-        console.log(evt.keyCode);     
         if ((evt.keyCode == 27) && (subordinateOverlay.classList.contains("modal_opened"))) {            
             closeModal(subordinateOverlay);
         };
     });
-}*/
-
-/*function handleEscapePress(evt) {
-    const bigOverlay = evt.currentTarget;
-    const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));    
-    subordinateOverlays.forEach((subordinateOverlay) => {        
-        if (subordinateOverlay.classList.contains("modal_opened")) {            
-            if (evt.keyCode == 27) {
-            closeModal(subordinateOverlay);            
-            };
-        };
-    });
-}*/
-
-/*function handleEscapePress(evt) {
-    console.log(evt.currentTarget);
-    if (evt.keyCode == 27) {
-        closeModal(evt.currentTarget);
-    };
-}*/
-
-/*function handleEscapePress(evt) {
-    const bigOverlay = evt.currentTarget;
-    console.log(evt.bigOverlay);
-}*/ //for some reason I can't get it to work with the preview modal
-
-function handleBoxClick(evt) {    
-    evt.stopImmediatePropagation();
-    //evt.stopPropagation();
 }
 
-closeOverlays.forEach((overlay) => {
-    overlay.addEventListener("click", () => closeModal(overlay));    
-});
+document.addEventListener("keydown", handleEscapePress);
+
+function handleBoxClick(evt) {    
+    evt.stopImmediatePropagation();    
+}
 
 modalBoxes.forEach((box) => {
     box.addEventListener("click", handleBoxClick);
 });
 
-pageOverlay.addEventListener("click", handlePageClick);
-
-//pageOverlay.addEventListener("keydown", handleEscapePress);
-
 closeOverlays.forEach((overlay) => {
-    overlay.addEventListener("keydown", handleEscapePress);
+    overlay.addEventListener("click", () => closeModal(overlay));    
 });
+
+
+
+
+

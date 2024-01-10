@@ -1,7 +1,4 @@
 //for all my validation needs
-
-//console.log("I, (validation,) am loading just fine.");
-
 /*this is the project 'starter,' code.
 
 // enabling validation by calling enableValidation()
@@ -21,7 +18,7 @@ enableValidation({
 //objects
 
 config = {//modifying the key values a bit to match the classes I am using, i.e. modal instead of popup.
-    formSelector: ".popup__form",//just inserted this class into the relevant forms, didn't change it.
+    formSelector: ".popup__form",//One exception is this- just inserted this class into the relevant forms, didn't change it.
     inputSelector: ".modal__input",
     submitButtonSelector: ".popup__button",
     inactiveButtonClass: "modal__button_disabled",
@@ -31,41 +28,36 @@ config = {//modifying the key values a bit to match the classes I am using, i.e.
 
 //variables
 
-//I've been fucking around with making the parameters for all the descendent functions have slightly different names- e.g. what starts as formElements becomes formEls or something like that. Might be a bid at future-proofing or making it seem like the function can be used in multiple ways but... I think it's needlessly confusing for now. Going to ammend this.
-//My other worry, though, is that by having all the elements in question named the same that is the, "scope," could become confused and they, (the functions,) could start pulling the data from the wrong places at the wrong time. It'll be doubly important, then, to make sure my spelling is tight and consistent.
-//Regardless the, 'pedigree,' of each variable should be clear as they are passed through these functions as long as I acknowledge the above. If this proves to be a problem then I will dice up the variable/paramter names in each function.
+//I've been toying around with making the parameters for all the descendent functions have slightly different names- e.g. what starts as formElements becomes formEls or something like that. Might be a bid at future-proofing or making it seem like the function can be used in multiple ways but... I think it's needlessly confusing for now. Going to ammend this.
+//My other worry, though, is that by having all the elements in question named the same is that the, "scope," could become confused and they, (the functions,) could start pulling the data from the wrong places at the wrong time. It'll be doubly important, then, to make sure my spelling is tight and consistent.
+//Regardless the, 'pedigree,' of each variable should be clear which, at this point, I value more; if this proves to be a problem then I will dice up the variable/parameter names in each function accordingly.
+
+//OH YEAH IN CASE IT ISN'T CLEAR I WAS FOLLOWING ALONG WITH THE SCREENCAST AND MODELLING ALL THIS OFF OF THAT. I'M NOT SURE EXACTLY ON THE RULES FOR PLAGIARISM IN CODE ARE OR IF THIS COUNTS AS THAT BUT IS ACKNOWLEDGING IT HERE WORTH SOMETHING? 
 
 //functions
 
-function enableValidation(validationParameters) {//this is the master function for this script that is initially called. Why am I calling the object validation parameters? Good question- this is all for validation and these are parameters to the master function so... yeah.
+function enableValidation(validationParameters) {//this is the master function for this script that is initially called. Why am I calling the required object, "validation parameters?" Good question- the object needed is all for validation and these are parameters to the master function so... yeah.
     const formList = Array.from(document.querySelectorAll(validationParameters.formSelector));
-    //console.log(validationParameters);
-    //console.log(formList);
     formList.forEach((formElement) => {
-        formElement.addEventListener("submit", (evt) => {//should I break this out into a function or is anonymous ok? Part of me want to be very deliberate. Then again it's a single line... will leave anonymous for now.
+        formElement.addEventListener("submit", (evt) => {
             evt.preventDefault();
         });
-        setEventListeners(formElement, validationParameters); //passing these pieces, the form being checked and the initial object, to the next descendent.
+        setEventListeners(formElement, validationParameters);
     });
 };
 
-function setEventListeners(formElement, validationParameters) { //being literal with the paramters here so i avoid confustion, especially with plural and singular element(s). 
-    const {inputSelector} = validationParameters;//object destructuring method. Selecting the property/key straight out of the object.
+function setEventListeners(formElement, validationParameters) { //being literal with the paramters here so i avoid confustion, especially with plural and singular elements. 
+    const {inputSelector} = validationParameters;//trying out the object destructuring method. Selecting the property/key straight out of the object. Very neat.
     //const inputElements = Array.from(formEl.querySelectorAll(valParam.inputSelector)); //=to above
     const inputElements = Array.from(formElement.querySelectorAll(inputSelector));
-    //console.log(inputElements + "here are the input elements.");
     const submitButton = formElement.querySelector(".modal__save");
     inputElements.forEach((inputElement) => {
-        inputElement.addEventListener("input", () => {//haven't used the event object info yet.
-            //console.log("input DETECTED");            
-            //console.log(inputElement.validationMessage);
+        inputElement.addEventListener("input", () => {
             checkInputValidity(formElement, validationParameters, inputElement);
             toggleButtonState(inputElements, submitButton, validationParameters);
         });
     });
 };
-
-//check input validity functions
 
 function checkInputValidity(formElement, validationParameters, inputElement) {
     if (!inputElement.validity.valid) {
@@ -75,12 +67,9 @@ function checkInputValidity(formElement, validationParameters, inputElement) {
     
 }
 
-function showInputError(formElement, inputElement, {inputErrorClass, errorClass}) {//object destructuring, just pulling the properties im concerned with out of the object.
-    //console.log(inputElem.id);
+function showInputError(formElement, inputElement, {inputErrorClass, errorClass}) {//object destructuring again, just pulling the properties im concerned with out of the object.
     //const errorMessageElem = formElement.querySelector("#" + inputElem.id + "-error");
-    const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);//template literal of the above    
-    //console.log(errorMessageElem);
-    //InputElement.classList.add(validationParams.inputErrorClass);
+    const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);//template literal of the above, looks cooler.
     inputElement.classList.add(inputErrorClass);
     errorMessageElement.textContent = inputElement.validationMessage;
     errorMessageElement.classList.add(errorClass);
@@ -92,9 +81,6 @@ function hideInputError(formElement, inputElement, {inputErrorClass, errorClass}
     errorMessageElement.textContent = "";
     errorMessageElement.classList.remove(errorClass);
 }
-
-
-//toggle button state functions
 
 /*function toggleButtonState(inputElems, submButton, {inactiveButtonClass}) {
     let foundInvalid = false;
@@ -117,7 +103,6 @@ function toggleButtonState(inputElements, submitButton, {inactiveButtonClass}) {
         disableSubmitButton(submitButton, inactiveButtonClass);
     }    
     enableSubmitButton(submitButton, inactiveButtonClass);
-    
 };
 
 function hasInvalidInput(inputList) {
