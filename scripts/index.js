@@ -232,73 +232,13 @@ function handleCardDelete(event) {
 
 //variables
 
-
-/*
-   **Needs correcting**
-
- Please, call it `modals` because you fine all modals here G2G
-
-*/
-//const closeOverlays = Array.from(document.querySelectorAll(".modal"));
-/*change to*/ const modals = Array.from(document.querySelectorAll(".modal"));
+const modals = Array.from(document.querySelectorAll(".modal"));
 
 const pageOverlay = document.querySelector(".page");
-
 
 const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 
 //functions
-
-//1A THIS ONE IS VERY TRICKY/SENSITIVE. THE CHANGES I WANT TO MAKE SEEM TO BREAK THE OPEN MODAL FUNCTION. SEE 1B FOR WHAT I IMAGINE I WANT TO DO BUT WHICH DOESN'T WORK
-/*function handlePageClick(evt) {//prime
-    const bigOverlay = evt.target;    
-/***Needs correcting** Please, use `closeOverlays` here because it's the same modals you need G2G
-     No need to search them again and again
-    const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
-    subordinateOverlays.forEach((subordinateOverlay) => {
-        if (subordinateOverlay.classList.contains("modal_opened")) {
-            closeModal(subordinateOverlay);
-        };
-    });    
-}*/
-
-/*1B 
-
-/*function handlePageClick(modals) {
-	modals.forEach((modal) => {
-		if(modal.classList.contains("modal_opened")) {
-			closeModal(modal);
-		};
-}); */ //but see this, for some reason, obstructs my open function; I do not get it.*/
-
-//actually I think I can just wire the close function directly in the event listener for the page.
-
-
-/***Needs correcting*** Please, donâ€™t add listeners to `document` or `window` or `pageOverlay` if you donâ€™t remove them because the listeners always watch any clicks on the page and make checks. 
-Thatâ€™s a waste of resources.*/ //G2G
-
-//pageOverlay.addEventListener("click", handlePageClick);
-//hmm maybe I will add this to the open modal function, same with escape since that has the same critique.
-
-/*function handleEscapePress(evt) {//prime
-    const bigOverlay = evt.currentTarget;    
-    /***Needs correcting** Please, use `closeOverlays` here because it's the same modals you need
-     No need to search them again and again*/
-    /*const subordinateOverlays = Array.from(bigOverlay.querySelectorAll(".modal"));
-    subordinateOverlays.forEach((subordinateOverlay) => {
-        if ((evt.keyCode == 27) && (subordinateOverlay.classList.contains("modal_opened"))) {            
-            closeModal(subordinateOverlay);
-        };
-    });
-}*/
-
-/*function handleEscapePress(evt) {
-	modals.forEach((modal) => {
-		if (evt.key == "Escape") { //gonna try w/out the open check, seems redundant.
-			closeModal(modal);
-		};
-	});
-}*/ //refactoring 'cos if I am adding to modal on open I don't need to iterate through
 
 function handleEscapePress(evt) {
     modals.forEach((modal) => {
@@ -308,6 +248,14 @@ function handleEscapePress(evt) {
     });    
 }
 
+function handlePageClick(evt) {
+    const activeTarget = evt.target;
+    if (!activeTarget.classList.contains("modal__box")) {
+        modals.forEach((modal) => {
+            closeModal(modal);
+        });
+    }
+}
 
 //REWRITING OPEN MODAL AND CLOSE MODAL HERE, HAVE ANNOTATED THEM OUT ABOVE AND AM REFACTORING HERE
 
@@ -315,42 +263,27 @@ function handleEscapePress(evt) {
 
 function openModal(modal) {
     modal.classList.add('modal_opened');
-    //document.addEventListener("click", closeModal(modal));
-    document.addEventListener("keydown", handleEscapePress); //very iffy about this- I need to pass it the event object and the modal as a parameter, will see if this works.
-    //document.addEventListener("keydown", (modal) => handleEscapePress(modal)); keeping this handy in the backpocket in case the above doesn't work
+    pageOverlay.addEventListener("mousedown", handlePageClick);
+    document.addEventListener("keydown", handleEscapePress);
 }
 
 //close modal
 
 function closeModal(modal) {
-    modal.classList.remove('modal_opened');    
-    //pageOverlay.removeEventListener("click", closeModal);
+    modal.classList.remove('modal_opened');
+    pageOverlay.removeEventListener("mousedown", handlePageClick);
     document.removeEventListener("keydown", handleEscapePress);
 }
 
-/***Needs correcting*** The check list says: An event listener for closing the popup by pressing Esc is added when the popup is opened, and is removed when it's closed.*/ //G2G
-
-//document.addEventListener("keydown", handleEscapePress); //will add elsewhere, maybe integrate with open and closing functions.
-
-function handleBoxClick(evt) {    
+function handleBoxClick(evt) {
     evt.stopImmediatePropagation();
 }
 
 modalBoxes.forEach((box) => {
-    box.addEventListener("click", handleBoxClick);
+    box.addEventListener("mousedown", handleBoxClick);
 });
 
-/*closeOverlays.forEach((overlay) => {
-    overlay.addEventListener("click", () => closeModal(overlay));
-});*/
-
-modals.forEach((modal) => {
-	modal.addEventListener("click", () => closeModal(modal));
-}); //may have screwed up the function declaration here but you get the idea- just rewriting the above with the new variable
-
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------worry about this later, get working first
+//-----------------------------------------------------------------------------------------------------------------------------------------will worry about this later, must get working first
 
 /***Could be improved** If itâ€™s interesting for you here is how you can combine **overlay** and **close buttons** listeners together:
 ```js

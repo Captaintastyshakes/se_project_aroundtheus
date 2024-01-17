@@ -17,10 +17,10 @@ enableValidation({
 
 //objects
 
-config = {//modifying the key values a bit to match the classes I am using, i.e. modal instead of popup.
-    formSelector: ".popup__form",//One exception is this- just inserted this class into the relevant forms, didn't change it.
+const config = {
+    formSelector: ".modal__form",
     inputSelector: ".modal__input",
-    submitButtonSelector: ".popup__button",
+    submitButtonSelector: ".modal__save",
     inactiveButtonClass: "modal__button_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible"
@@ -31,8 +31,6 @@ config = {//modifying the key values a bit to match the classes I am using, i.e.
 //I've been toying around with making the parameters for all the descendent functions have slightly different names- e.g. what starts as formElements becomes formEls or something like that. Might be a bid at future-proofing or making it seem like the function can be used in multiple ways but... I think it's needlessly confusing for now. Going to ammend this.
 //My other worry, though, is that by having all the elements in question named the same is that the, "scope," could become confused and they, (the functions,) could start pulling the data from the wrong places at the wrong time. It'll be doubly important, then, to make sure my spelling is tight and consistent.
 //Regardless the, 'pedigree,' of each variable should be clear which, at this point, I value more; if this proves to be a problem then I will dice up the variable/parameter names in each function accordingly.
-
-//OH YEAH IN CASE IT ISN'T CLEAR I WAS FOLLOWING ALONG WITH THE SCREENCAST AND MODELLING ALL THIS OFF OF THAT. I'M NOT SURE EXACTLY ON THE RULES FOR PLAGIARISM IN CODE ARE OR IF THIS COUNTS AS THAT BUT IS ACKNOWLEDGING IT HERE WORTH SOMETHING? 
 
 //functions
 
@@ -50,7 +48,8 @@ function setEventListeners(formElement, validationParameters) { //being literal 
     const {inputSelector} = validationParameters;//trying out the object destructuring method. Selecting the property/key straight out of the object. Very neat.
     //const inputElements = Array.from(formEl.querySelectorAll(valParam.inputSelector)); //=to above
     const inputElements = Array.from(formElement.querySelectorAll(inputSelector));
-    const submitButton = formElement.querySelector(".modal__save");
+    //const submitButton = formElement.querySelector(".modal__save");
+    const submitButton = formElement.querySelector(validationParameters.submitButtonSelector);
     inputElements.forEach((inputElement) => {
         inputElement.addEventListener("input", () => {
             checkInputValidity(formElement, validationParameters, inputElement);
@@ -102,21 +101,31 @@ function toggleButtonState(inputElements, submitButton, {inactiveButtonClass}) {
     if (hasInvalidInput(inputElements)) {
         disableSubmitButton(submitButton, inactiveButtonClass);
     }    
-    enableSubmitButton(submitButton, inactiveButtonClass);
+    if (!hasInvalidInput(inputElements)) {
+        enableSubmitButton(submitButton, inactiveButtonClass);
+    }//for some reason double if'ing was the only reliable way to get the if statement to check properly and not proc the enable function all the time.
 };
 
 function hasInvalidInput(inputList) {
     return !inputList.every((inputElement) => inputElement.validity.valid);
 }
 
+/*function hasInvalidInput(formList) {
+    return !formList.every((inputElement) => inputElement.validity.valid);
+}*/ //some attempts I made at rewriting this function before settling on to the solution for the submit button not disabling.
+
+/*function hasInvalidInput(inputElement) {//rewrote for singular input elements when I thought that was the issue
+    return (!inputElement.validity.valid);
+}*/
+
 function disableSubmitButton(submitButton, inactiveButtonClass) {
     submitButton.classList.add(inactiveButtonClass);
-        return submitButton.disabled = true;
+    return submitButton.disabled = true;
 }
 
 function enableSubmitButton(submitButton, inactiveButtonClass) {
     submitButton.classList.remove(inactiveButtonClass);
-    submitButton.disabled = false;
+    submitButton.disabled = false;    
 }
 
 enableValidation(config);
