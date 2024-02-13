@@ -2,8 +2,41 @@
 // e.g. 4.1 would be project for sprint 4, first task: fill form field, as an example. I think it helps legibility *a bit
 
 /*--arrays/objects--*/ //---------------------------------------------------------------------------
+//but michael why didn't you just use the pre-constructed object below? This seems unneccesary.
+//oh that's very interesting and I agree- well for some reason the browser says that object1, for instance, when it's defined IN the array isn't defined so being explicit here seemed to solve it ¯\_(ツ)_/¯
+const object1 = {
+        name: "Yosemite Valley",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg"
+    }
+    
+const object2 = {
+        name: "Lake Louise",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg"
+    }
+   
+const object3 = {
+        name: "Bald Mountains",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg"
+    }
+    
+const object4 = {
+        name: "Latemar",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg"
+    }
+    
+const object5 = {
+        name: "Vanoise National Park",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg"
 
-const initialCards = [
+    }
+    
+const object6 = {
+        name: "Lago di Braies",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
+    } 
+
+const initialCards = [object1, object2, object3, object4, object5, object6];
+/*const initialCards = [
     
     object1 = {
         name: "Yosemite Valley",
@@ -36,7 +69,7 @@ const initialCards = [
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
     } 
     
-];
+];*/
 
 /*--variables--*/ //--------------------------------------
 
@@ -118,23 +151,18 @@ cardAddButton.addEventListener("click", handleAddButtonClick);
 
 //(5.6) opening photo preview modal------------------------------------------------
 
-function fillCardPreview(event) {
-    const selectedCard = event.target;
-    cardPortrait.src = selectedCard.src;
-    cardPortrait.alt = selectedCard.alt;
-    cardSubtitle.textContent = selectedCard.alt;
-};
+function fillCardPreview(data) {//7 refactored to accept object class
+    cardPortrait.src = data._link;
+    cardPortrait.alt = data._name;
+    cardSubtitle.textContent = data._name;
+}
 
-function handlePhotoClick(event) {
+function handlePhotoClick(data) {//7 refactored to accept object class
     openModal(cardPreviewPopup);
-    fillCardPreview(event);
+    fillCardPreview(data);
 }
 
 /*closing modal*///---------------------------------------------------------------
-
-/*function  closeModal(modal) {
-    modal.classList.remove('modal_opened');
-}*/
 
 closeButtons.forEach((button) => {
     const popup = button.closest(".modal");
@@ -152,11 +180,18 @@ function handleProfileFormSubmit(event) {
     event.preventDefault();
     fillProfileInfo();
     closeModal(editProfilePopup);
+    profileForm.querySelector(".modal__save").classList.add("modal__button_disabled");//7 additions to disable save button
+    return profileForm.querySelector(".modal__save").disabled = true;
 }
 
 function handleAddPhotoSubmit(event) {
     event.preventDefault();
-    renderCard(makeNewPhoto());
+    const newCardData = {
+        name: titleField.value,
+        link: imageURLField.value
+    }
+    const addedCard = new Card(newCardData, "#card", handlePhotoClick);
+    cardImplement.prepend(addedCard.generateCardElement());
     closeModal(addPhotoPopup);
     event.target.reset();
 }
@@ -164,67 +199,6 @@ function handleAddPhotoSubmit(event) {
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 addForm.addEventListener("submit", handleAddPhotoSubmit);
-
-
-
-//(5.3) adding photos/submitting with the add photo form---------------------------------------
-
-function makeNewPhoto() {
-    const newObject = {
-        name: "",
-        link: ""
-    };
-    newObject.name = titleField.value;
-    newObject.link = imageURLField.value;
-    return newObject;    
-}
-
-/*(4.3)rendering card(s)*///------------------------------------------------------------------
-
-function getCardElement(data) {
-    const cardElement = cardTemplate.querySelector('.cards__card').cloneNode(true);   
-    const cardImage = cardElement.querySelector('.cards__image');
-    const cardDeleteButton = cardElement.querySelector('.cards__delete-button')
-    const cardLikeButton = cardElement.querySelector('.cards__like-button');
-    cardImage.src = data.link; 
-    cardImage.alt = data.name;
-    const cardTitle = cardElement.querySelector('.cards__title');
-    cardTitle.textContent = data.name;    
-    cardElement.id = cardImage.alt.slice(0, 4) + "LK";//assigning a generated id, just in case. Also helps with logging if targets are working.
-    cardDeleteButton.addEventListener("click", handleCardDelete);
-    cardImage.addEventListener("click", handlePhotoClick);
-    cardLikeButton.addEventListener("click", handleLikeButtonClick);
-    return cardElement;
-}
-
-// (5.3) adding a new card-----------------------------------------------------------------
-
-function renderCard(item) {
-    const newCardElement = getCardElement(item);
-    cardImplement.prepend(newCardElement);
-} 
-
-//5.1 rendering/implementing cards with a forEach instead of for loop------------------------------
-
-initialCards.forEach(function (item) {
-    const cardElement = getCardElement(item);    
-    cardImplement.append(cardElement);
-});
-
-//(5.4) the like button------------------------------------------------------------------------
-
-function handleLikeButtonClick(event) {
-    const likeBinary = event.target;
-    likeBinary.classList.toggle('card__like-button_active');
-}
-
-//(5.5) Deleting cards--------------------------------------------------------------------------
-
-function handleCardDelete(event) {
-    const markForDelete = event.target;
-    const deleteTarget = markForDelete.closest(".cards__card");
-    deleteTarget.remove();
-};
 
 // Storing all my 6.0 stuff here, *may mix in after the fact to the right places.
 
@@ -281,6 +255,35 @@ function handleBoxClick(evt) {
 
 modalBoxes.forEach((box) => {
     box.addEventListener("mousedown", handleBoxClick);
+});
+
+//7: card object importing and instantiation
+import Card from "/components/Card.js";
+
+initialCards.forEach((object) => {
+    const newCard = new Card(object, "#card", handlePhotoClick);
+    cardImplement.prepend(newCard.generateCardElement());
+});
+
+//7 form object validator importing
+
+const config = {
+    formSelector: ".modal__form",
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__save",
+    inactiveButtonClass: "modal__button_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible"
+  }
+
+const modalForms = Array.from(document.querySelectorAll(".modal__form"));
+
+import FormValidator from "/components/FormValidator.js";
+
+modalForms.forEach((form) => {
+    const validatedForm = new FormValidator(config, form)
+    validatedForm.enableValidation();
+    //validatedForm.resetFormValidation();
 });
 
 //-----------------------------------------------------------------------------------------------------------------------------------------will worry about this later, must get working first
