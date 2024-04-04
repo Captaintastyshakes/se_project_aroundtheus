@@ -81,4 +81,8 @@ export default class FormValidator {
     this._toggleButtonState();
     this._hideInputError(inputElement);
   }
+
+  test() {//in case I need to see how this is being loaded/passed/treated
+    console.log(this);
+  }
 }
