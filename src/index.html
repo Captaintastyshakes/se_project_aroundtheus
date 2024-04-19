@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Around the U.S.</title>
-    <link rel="stylesheet" href="./pages/index.css"> 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!--<link rel="stylesheet" href="./pages/index.css">-->
+    <!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
     <meta name="description" content="The 'Around the U.S.' site I did for Tripleten.">
     <meta name="keywords" content="Around-the-U.S. tripleten project">
     <meta name="author" content="Michael Weihmann">
@@ -13,20 +13,28 @@
 <body> 
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="images/logo.svg" alt="Around the US">
+            <!--<img class="header__logo" src="./images/logo.svg" alt="Around the US">-->
+            <!--<img class="header__logo" id="header-logo" alt="Around the US">-->
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Around the US">
         </header>
         <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="images/Avatar.png" alt="Jacques Cousteau">
+            <!--<img class="profile__avatar" src="./images/Avatar.png" alt="Jacques Cousteau">-->
+            <!--<img class="profile__avatar" id="profile-avatar" alt="Jacques Cousteau">-->
+            <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Jacques Cousteau">
             <div class="profile__info">
                 <h1 class="profile__name">Jacques Cousteau</h1>
-                <button type="button" class="profile__edit-button"><img class="profile__edit-image" src="images/Edit-Button.svg" alt="Edit button"></button>
+                <!--<button type="button" class="profile__edit-button"><img class="profile__edit-image" src="./images/Edit-Button.svg" alt="Edit button"></button>-->
+                <button type="button" class="profile__edit-button"><img class="profile__edit-image" src="<%=require('./images/Edit-Button.svg')%>" alt="Edit button"></button>
                 <p class="profile__occupation">Explorer</p>
             </div>
-            <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="images/addbutton.svg" alt="Add photos"></button>
+            <!--<button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="./images/addbutton.svg" alt="Add photos"></button>-->
+            <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="<%=require('./images/addbutton.svg')%>" alt="Add photos"></button>
             <div class="modal profile-popup" id="profile-popup">
                 <button type="button" class="modal__exit" id="close-profile-button">
-                    <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
+                    <!--<img class="modal__close" src="./images/Close-Icon.svg" alt="Close">-->
+                    <!--<img class="modal__close" id="profile-modal-close" alt="Close">-->
+                    <img class="modal__close" src="<%=require('./images/Close-Icon.svg')%>" alt="Close">
                 </button>
                 <form class="modal__box modal__form" name="profile-form" id="profile-form"><!--adding id's to make sure I'm selecting it properly. Also adding extra class to forms-->
                     <h3 class="modal__header">Edit profile</h3>
@@ -43,7 +51,9 @@
             </div>
             <div class="modal add-popup" id="add-popup">
                 <button type="button" class="modal__exit" id="close-add-button">
-                    <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
+                    <!--<img class="modal__close" src="./images/Close-Icon.svg" alt="Close">-->
+                    <!--<img class="modal__close" id="add-modal-close" alt="Close">-->
+                    <img class="modal__close" src="<%=require('./images/Close-Icon.svg')%>" alt="Close">
                 </button>        
                 <form class="modal__box modal__form" name="add-photo-form" id="add-photo-form">
                     <h3 class="modal__header">New Place</h3>
@@ -60,10 +70,13 @@
             </div>            
             <div class="modal preview-popup" id="preview-popup">
                 <button type="button" class="modal__exit" id="close-preview-button">
-                    <img class="modal__close" src="images/Close-Icon.svg" alt="Close">
+                    <!--<img class="modal__close" src="./images/Close-Icon.svg" alt="Close">-->
+                    <!--<img class="modal__close" id="preview-modal-close" alt="Close">-->
+                    <img class="modal__close" src="<%=require('./images/Close-Icon.svg')%>" alt="Close">
                 </button>
                 <div class="modal__box preview-popup__box" id="preview-box">
-                    <img class="preview-popup__image" src="#" alt="">
+                    <!--<img class="preview-popup__image" src="#" alt="">-->
+                    <img class="preview-popup__image" src="<%=require('#')%>" alt="">                    
                     <h3 class="preview-popup__subtitle"></h3>
                 </div>
             </div>
@@ -77,14 +90,18 @@
     </div>
     <template id="card">
         <div class="cards__card">
-            <button type="button" class="cards__delete-button"><img src="images/Trash.svg" alt="Delete photo"></button>
-                <img class="cards__image" src="" alt="">
+            <!--<button type="button" class="cards__delete-button"><img src="./images/Trash.svg" alt="Delete photo"></button>-->
+            <!--<button type="button" class="cards__delete-button"><img id="card-delete-button" alt="Delete photo"></button>-->
+            <button type="button" class="cards__delete-button"><img src="<%=require('./images/Trash.svg')%>" alt="Delete photo"></button>
+                <img class="cards__image" src="<%=require('')%>" alt="">
             <div class="cards__content">
                 <h2 class="cards__title"></h2>
-                <button type="button" class="cards__like-button"><img src="images/Vector.svg" alt="Like!"></button>
+                <!--<button type="button" class="cards__like-button"><img src="./images/Vector.svg" alt="Like!"></button>-->
+                <!--<button type="button" class="cards__like-button"><img id="card-like" alt="Like!"></button>-->
+                <button type="button" class="cards__like-button"><img src="<%=require('./images/Vector.svg')%>" alt="Like!"></button>
             </div>
         </div>
     </template>
-    <script src="pages/index.js" type="module" defer></script>    
+    <!--<script src="./pages/index.js" type="module" defer></script>-->
 </body>
 </html>

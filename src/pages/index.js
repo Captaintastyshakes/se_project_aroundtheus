@@ -1,5 +1,31 @@
-import Card from "/components/Card.js";
-import FormValidator from "/components/FormValidator.js";
+import "./index.css";
+
+//image nonsense
+
+/*import headerLogo from "../images/logo.svg";
+const headerLogoImage = document.getElementById("header-logo");
+headerLogoImage.src = headerLogo;
+import profileAvatar from "../images/Avatar.png";
+const profileAvatarImage = document.getElementById("profile-avatar");
+profileAvatarImage.src = profileAvatar;
+import profileModalClose from "../images/Close-Icon.svg";
+const profileModalCloseImage = document.getElementById("profile-modal-close");
+profileModalCloseImage.src = profileModalClose;
+const addModalCloseImage = document.getElementById("add-modal-close");
+addModalCloseImage.src = profileModalClose;
+const previewModalCloseImage = document.getElementById("preview-modal-close");
+previewModalCloseImage.src = profileModalClose;
+import deleteButton from "../images/Trash.svg";
+const deleteButtonImage = document.getElementById("card-delete-button");
+deleteButtonImage.src = deleteButton;
+import cardLike from "../images/Vector.svg";
+const cardLikeImage = document.getElementById("card-like");
+cardLikeImage.src = cardLike;*/
+
+//
+
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 import {
   initialCards,
   formValidators,
@@ -13,11 +39,11 @@ import {
   modalBoxes,
   addPhotoPopup,
   userData,
-} from "/utils/constants.js";
-import UserInfo from "/components/UserInfo.js";
-import PopupWithForm from "/components/PopupWithForm.js";
-import PopupWithImage from "/components/PopupWithImage.js";
-import Section from "/Section.js";
+} from "../utils/constants.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
 
 const user = new UserInfo(userData);
 const profilePopup = new PopupWithForm(editProfilePopup, {
