@@ -1,6 +1,6 @@
 import "./index.css";
 
-//image nonsense
+//image nonsense- in case I needed to import the images into webpack the other way
 
 /*import headerLogo from "../images/logo.svg";
 const headerLogoImage = document.getElementById("header-logo");
@@ -35,8 +35,7 @@ import {
   cardPreviewPopup,
   nameField,
   aboutMeField,
-  config,
-  modalBoxes,
+  config,  
   addPhotoPopup,
   userData,
 } from "../utils/constants.js";
@@ -54,8 +53,11 @@ const profilePopup = new PopupWithForm(editProfilePopup, {
 });
 
 function fillProfileForm() {
-  nameField.value = user.getUserInfo().name;
-  aboutMeField.value = user.getUserInfo().job;
+  /*nameField.value = user.getUserInfo().name;
+  aboutMeField.value = user.getUserInfo().job;*/
+  const {name, job} = user.getUserInfo();
+  nameField.value = name;
+  aboutMeField.value = job; //implementing some of that destructuring magic.
 }
 
 function handleEditProfileButtonClick() {
@@ -69,13 +71,13 @@ profilePopup.setEventListeners();
 editProfileButton.addEventListener("click", handleEditProfileButtonClick);
 
 const addPopup = new PopupWithForm(addPhotoPopup, {
-  handleFormSubmit: ({ title, image_url }) => {
+  handleFormSubmit: ({ title, image_url: imageUrl }) => {
     const newObj = {
       name: title,
-      link: image_url,
+      link: imageUrl
     };
-    const newCardInfo = [newObj];
-    const boosterCard = new Section(
+    //const newCardInfo = [newObj];
+    /*const boosterCard = new Section(
       {
         items: newCardInfo,
         renderer: (item) => {
@@ -85,30 +87,34 @@ const addPopup = new PopupWithForm(addPhotoPopup, {
         },
       },
       ".cards"
-    );
-    formValidators["add-photo-form"].inputElements.forEach((input) =>
+    );*/
+    const newerCard = new Card(newObj, "#card", handlePhotoClick);//reworking so that it just adds to existing section rather than make a new one
+    const cardElement = newerCard.generateCardElement();
+    cardSection.addItem(cardElement);
+    /*formValidators["add-photo-form"].inputElements.forEach((input) =>
       formValidators["add-photo-form"].resetFormValidation(input)
-    );
-    boosterCard.renderItems();
+    );*/
+    formValidators["add-photo-form"].resetFormValidation();//tweaked the method in formvalidators to do the iterating so index doesn't have to do it
     addPopup.close();
   },
 });
 
 addPopup.setEventListeners();
 
-const starterPack = new Section(
+//const starterPack = new Section(
+  const cardSection = new Section(//renaming to something more informative rather than a cheeky MTG reference
   {
     items: initialCards,
     renderer: (item) => {
       const newCard = new Card(item, "#card", handlePhotoClick);
       const cardElement = newCard.generateCardElement();
-      starterPack.addItem(cardElement);
+      cardSection.addItem(cardElement);
     },
   },
   ".cards"
 );
 
-starterPack.renderItems();
+cardSection.renderItems();
 
 const imageBox = new PopupWithImage(cardPreviewPopup);
 
@@ -128,9 +134,9 @@ function handleBoxClick(evt) {
   evt.stopImmediatePropagation();
 }
 
-modalBoxes.forEach((box) => {
+/*modalBoxes.forEach((box) => {
   box.addEventListener("mousedown", handleBoxClick);
-});
+});*/ //passed to popup
 
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));

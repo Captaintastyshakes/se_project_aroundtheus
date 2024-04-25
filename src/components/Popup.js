@@ -31,15 +31,21 @@ export default class Popup {
     }
   };
 
+  _handleBoxClick = (evt) => {//for stopping close events when clicking the modal itself
+    evt.stopImmediatePropogation();
+  }
+
   _setAltEventListeners() {
     //this is for adding alternative closing event listeners- escape and page click
     this._pageOverlay.addEventListener("mousedown", this._handlePageClick);
     document.addEventListener("keydown", this._handleEscClose);
+    this._popupElement.addEventListener("mousedown", this._handleBoxClick);
   }
 
   _unsetAltEventListeners() {
     //for nullifying the above on close to save resources
     this._pageOverlay.removeEventListener("mousedown", this._handlePageClick);
     document.removeEventListener("keydown", this._handleEscClose);
+    this._popupElement.removeEventListener("mousedown", this._handleBoxClick);
   }
 }

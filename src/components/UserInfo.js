@@ -6,12 +6,16 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    let userObj = {};
-
+    /*let userObj = {};
     userObj = {
       name: this._name.textContent,
       job: this._job.textContent,
     };
+    return userObj;*/
+    const userObj = {
+      name: this._name.textContent,
+      job: this._job.textContent,
+    };//just doing the above in one stroke now, i know doing it the above way was obviously redundant but I was having trouble with it before, iirc; doesn't matter now, it works
     return userObj;
   }
 
