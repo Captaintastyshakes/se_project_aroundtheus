@@ -6,6 +6,10 @@ export default class PopupWithForm extends Popup {
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
     this._inputs = this._popupForm.querySelectorAll(".modal__input");
+    //
+    this._submitTitle = this._popupForm.querySelector(".modal__save");
+    this._submitTitleOriginal = this._submitTitle.textContent;//as with the other popup form object this is to store the initial value of the submit button text and keep it 'safe'
+
   }
 
   _getInputValues() {
@@ -18,11 +22,15 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     this._popupForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      //this._handleFormSubmit(({} = this._getInputValues()));
-      this._handleFormSubmit(this._getInputValues());//slight tweak of the above, seems to work and looks cleaner.
+      event.preventDefault();      
+      this._handleFormSubmit(this._getInputValues());
       this._popupForm.reset();
     });
     super.setEventListeners();
+  }
+
+  open() {
+    this._submitTitle.textContent = this._submitTitleOriginal;
+    super.open();
   }
 }

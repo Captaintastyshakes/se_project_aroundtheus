@@ -12,9 +12,12 @@
 
 .profile__avatar {
     max-width: 120px;
-    max-height: 120px;
-    justify-self: start;
-    object-fit: cover;
+    max-height: 120px;    
+    justify-self: center;
+    object-fit: none;
+    position: relative;
+    z-index: 0;
+    
 }
 
 .profile__name {
@@ -99,6 +102,41 @@
     margin-left: auto;
     margin-right: auto;
     border-style: none;
+}
+
+.profile__avatar-button:hover {
+    opacity: 60%;
+}
+
+.profile__avatar-button {
+    border-style: none;
+    border-width: 0;
+    background: none;
+    transition: opacity 1s;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+}
+
+.profile__avatar-button::hover {
+    opacity: 60%;
+}
+
+.profile__avatar-button-icon {
+    position: absolute;
+    z-index: 1;
+    left: 40%;
+    top: 35%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    height: 26px;
+    width: 26px;
+}
+
+.profile__avatar {
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 1170px) {
