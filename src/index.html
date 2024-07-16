@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Around the U.S.</title>
-    <!--<link rel="stylesheet" href="./pages/index.css">-->
-    <!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
     <meta name="description" content="The 'Around the U.S.' site I did for Tripleten.">
     <meta name="keywords" content="Around-the-U.S. tripleten project">
     <meta name="author" content="Michael Weihmann">
@@ -17,11 +15,11 @@
         </header>
         <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Jacques Cousteau">
+            <button type="button" class="profile__avatar-button"><img class="profile__avatar-button-icon" src="<%=require('./images/edit-profile-icon.svg')%>" alt="Edit Profile Button"><img class="profile__avatar" id="avatar" alt="Your profile picture"></button>
             <div class="profile__info">
-                <h1 class="profile__name">Jacques Cousteau</h1>
+                <h1 class="profile__name"></h1>
                 <button type="button" class="profile__edit-button"><img class="profile__edit-image" src="<%=require('./images/Edit-Button.svg')%>" alt="Edit button"></button>
-                <p class="profile__occupation">Explorer</p>
+                <p class="profile__occupation"></p>
             </div>
             <button type="button" class="profile__add-button"><img class="profile__add-button-logo" src="<%=require('./images/addbutton.svg')%>" alt="Add photos"></button>
             <div class="modal profile-popup" id="profile-popup">
@@ -38,7 +36,7 @@
                         <input type="text" class="modal__input" id="about_me" placeholder="Description" required maxlength="200" minlength="2">
                         <span class="modal__error" id="about_me-error"></span>
                     </label>
-                    <button class="modal__save modal__button_disabled" type="submit" disabled>Save</button>
+                    <button class="modal__save modal__button_disabled" id="profile-info-submit" type="submit" disabled>Save</button>
                 </form>
             </div>
             <div class="modal add-popup" id="add-popup">
@@ -55,9 +53,9 @@
                         <input type="url" class="modal__input" id="image_url" placeholder="Image URL" required minlength="1">
                         <span class="modal__error" id="image_url-error"></span>
                     </label>                    
-                    <button class="modal__save modal__button_disabled" type="submit" disabled>Create</button>
+                    <button class="modal__save modal__button_disabled" id="add-popup-submit" type="submit" disabled>Create</button>
                 </form>
-            </div>            
+            </div>
             <div class="modal preview-popup" id="preview-popup">
                 <button type="button" class="modal__exit" id="close-preview-button">
                     <img class="modal__close" src="<%=require('./images/Close-Icon.svg')%>" alt="Close">
@@ -66,6 +64,31 @@
                     <img class="preview-popup__image" alt="">
                     <h3 class="preview-popup__subtitle"></h3>
                 </div>
+            </div>
+            <div class="modal delete-popup" name="delete-popup" id="delete-popup">
+                <button type="button" class="modal__exit" id="close-add-button">
+                    <img class="modal__close" src="<%=require('./images/Close-Icon.svg')%>" alt="Close">
+                </button>
+                <form class="modal__box modal__form" id="delete-form">
+                    <span id="card-to-delete" display="none"></span>
+                    <h3 class="modal__header">Are you sure?</h3>
+                    <label class="modal__label" for="delete-submit">
+                        <button class="modal__save" id="delete-submit" type="submit">Yes</button>
+                    </label>
+                </form>
+            </div>
+            <div class="modal avatar-popup" id="avatar-popup">
+                <button type="button" class="modal__exit" id="close-profile-button">
+                    <img class="modal__close" src="<%=require('./images/Close-Icon.svg')%>" alt="Close">
+                </button>
+                <form class="modal__box modal__form" name="avatar-form" id="avatar-form">
+                    <h3 class="modal__header">Change profile picture</h3>
+                    <label class="modal__label" for="avatarUrl">
+                        <input type="url" class="modal__input" id="avatarUrl" placeholder="Avatar URL" minlength="1">
+                        <span class="modal__error" id="avatarUrl-error"></span>
+                    </label>                    
+                    <button class="modal__save modal__button_disabled" id="avatar-submit" type="submit" disabled>Save</button>
+                </form>
             </div>
         </section>
         <section class="cards">
@@ -85,6 +108,5 @@
             </div>
         </div>
     </template>
-    <!--<script src="./pages/index.js" type="module" defer></script>-->
 </body>
 </html>
