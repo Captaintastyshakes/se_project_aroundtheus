@@ -74,10 +74,9 @@ export const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 export let userData = {};
 userData = {
   name: ".profile__name",
-  job: ".profile__occupation",
+  job: ".profile__occupation"
 };
 
-export const starterBlank = [];
-export const avatarImg = document.querySelector("#avatar");
 export const avatarButton = document.querySelector(".profile__avatar-button");
 export const editAvatarPopup = ".avatar-popup";
+export const starterPack = [];

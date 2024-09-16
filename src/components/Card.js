@@ -32,7 +32,7 @@ export default class Card {
   deleteElement() {//making public, changed from handledeleteclick
     this._cardElement.remove();
     this._cardElement = null;
-  }//never quite got this working the way I intended, or I should say found the right way to take advantage of this class object method  
+  }
 
   _setCardProperties() {
     this._cardImage.src = this.link;
@@ -59,4 +59,16 @@ export default class Card {
     this._setCardProperties();    
     return this._cardElement;
   }
+
+  toggleLike() {//to contain like logic in the card
+    if (!this.cardLikeButton.classList.contains("card__like-button_active"))
+    {      
+      this.cardLikeButton.classList.add("card__like-button_active");
+      this.isLiked = true;
+    }
+    else {
+      this.cardLikeButton.classList.remove("card__like-button_active");
+      this.isLiked = false;
+    }
+  }  
 }

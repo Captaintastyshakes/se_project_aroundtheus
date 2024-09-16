@@ -7,58 +7,44 @@ export default class Api {
 
     //the basic root functions that send requests out or brings them in- parameterized with ammendments to the fetch body
 
-    _fetchX = (endpoint, how) => {
-        this._options.method = how;
-        return fetch(this._baseUrl + endpoint, this._options)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
-        .then(data => {
-            this.isComplete = true;
-            return data;
-        })
-        .catch((err) => {
-            console.log(`WHOOPSIES ON THE FETCH: the ` + how + ` has failed in execution, reporting ` + err);
-        })
-        .finally(() => {
-            this._options.method = "";
-            this.isComplete = false;
-        });
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Error ${res.status}`);
     }
 
-    _sendX = (endpoint, parcel, how) => {
+    _request(url) {
+        return fetch(this._baseUrl + url, this._options).then(this._checkResponse)
+    }
+
+    _return(data) {
+        return data;
+    }
+
+    _reset() {
+        this._options.method = "";
+        this._options.body = null;
+    }
+
+    _fetchX = (endpoint, how) => {//new, condensed hotness
+        this._options.method = how;        
+        return this._request(endpoint).then(this._return)
+        .finally(() => {this._reset()});
+    }
+    
+    _sendX = (endpoint, parcel, how) => {//new condensed hotness
         this._options.method = how;
-        this._options.body = JSON.stringify(parcel);   
-        return fetch(this._baseUrl + endpoint, this._options)
-        .then(res => {
-            if (res.ok) {
-                console.log(res.ok);
-                console.log(res.status);
-                return res.json();
-            }
-            return Promise.reject(`uh ohs on the send: ${res.status}`);
-        })        
-        .then(data => {
-            console.log(data);
-            return data;
-        })
-        .catch((err) => {
-            console.log(`Error: ` + err);
-        })
-        .finally(() => {
-            this._options.method = "";
-            this._options.body = null;
-        });
+        this._options.body = JSON.stringify(parcel);
+        return this._request(endpoint).then(this._return)
+        .finally(() => {this._reset()});
     }
 
     //putting the root functions to task- these are all PUBLIC
 
     getCards() {
         return this._fetchX("/cards", "GET");
-    }
+    }    
     
     postCard(parcel) {
         return this._sendX("/cards", parcel, "POST");
@@ -69,15 +55,15 @@ export default class Api {
     }
 
     likeCard(cardId) {
-        this._fetchX(`/cards/${cardId}/likes`, "PUT");
+        return this._fetchX(`/cards/${cardId}/likes`, "PUT");
     }
 
     unlikeCard(cardId) {
-        this._fetchX(`/cards/${cardId}/likes`, "DELETE");
+        return this._fetchX(`/cards/${cardId}/likes`, "DELETE");
     }
 
     deleteCard(cardId) {
-       this._fetchX(`/cards/${cardId}`, "DELETE");
+       return this._fetchX(`/cards/${cardId}`, "DELETE");
     }
 
     getUserInfo() {
@@ -85,10 +71,11 @@ export default class Api {
     }
 
     patchInfo(parcel) {
-        this._sendX("/users/me", parcel, "PATCH");
+        return this._sendX("/users/me", parcel, "PATCH");
     }
 
     patchAvatar(parcel) {
-        this._sendX("/users/me/avatar", parcel, "PATCH");
+        return this._sendX("/users/me/avatar", parcel, "PATCH");
     }
+    
 }

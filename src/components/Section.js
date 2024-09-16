@@ -5,15 +5,14 @@ export default class Section {
     this._container = document.querySelector(selector);
   }
 
-  clear() {//made this public because I found a use for it.
+  clear() {//made this public because I found a use for it. edit: No I did not. Delete works fine now. Still nice to have the nuclear option in the back of pocket, I guess?
     this._container.innerHTML = "";
   }
 
-  renderItems() {
-    this._items.forEach(this._renderer);//refactor of the above to be slightly more elegant.
-    //NOW this seems to largely be irrelevent since I'm not really handling the initial gallery with the section methods anymore- 
-    //or at least I'm not relying on an intial array from before that I can just pass to the Section, (this gave me an ENORMOUS headache trying to do,) it's all iterative from the package I get from the API, generating cards from each object I get back.
-    //that being said I am not necessarily ready to code this out, can't shake the feeling it could hypothetically be useful in the future. I'm feeding it a null array until further notice. ¯\_(ツ)_/¯
+  renderItems() {    
+    this._items[0].forEach((item) => {//there's probably a more elegant way to do this than accessing an array position but this works well enough for me, which is to say at all. Kinda a quirk with storing the API data and needing to store/access after initializing the card section. ¯\_(ツ)_/¯
+      this._renderer(item);      
+    });    
   }
 
   addItem(element) {

@@ -7,13 +7,12 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._inputs = this._popupForm.querySelectorAll(".modal__input");
     //
-    this._submitTitle = this._popupForm.querySelector(".modal__save");
-    this._submitTitleOriginal = this._submitTitle.textContent;//as with the other popup form object this is to store the initial value of the submit button text and keep it 'safe'
-
+    this._submitButton = this._popupForm.querySelector(".modal__save");
+    this._submitButtonOriginal = this._submitButton.textContent;//as with the other popup form object this is to store the initial value of the submit button text and keep it 'safe'
   }
 
-  _getInputValues() {
-    this._userData = {};
+  getInputValues() {//making public
+    this._userData = {};//trying making this a constructor property to be set by the set function
     this._inputs.forEach((input) => {
       this._userData[input.id] = input.value;
     });
@@ -22,15 +21,18 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     this._popupForm.addEventListener("submit", (event) => {
-      event.preventDefault();      
-      this._handleFormSubmit(this._getInputValues());
-      this._popupForm.reset();
+      event.preventDefault();
+      this._handleFormSubmit(this.getInputValues());
     });
     super.setEventListeners();
   }
-
-  open() {
-    this._submitTitle.textContent = this._submitTitleOriginal;
-    super.open();
-  }
+  
+  renderLoading(bool, loadText) {
+    if(bool) {        
+      this._submitButton.textContent = loadText;
+    }
+    else {
+      this._submitButton.textContent = this._submitButtonOriginal;
+    }
+}
 }

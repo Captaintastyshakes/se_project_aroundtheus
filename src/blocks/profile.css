@@ -17,7 +17,8 @@
     object-fit: none;
     position: relative;
     z-index: 0;
-    
+    /*border-radius: 10px;*/
+    border-radius: 50%;
 }
 
 .profile__name {
@@ -112,31 +113,36 @@
     border-style: none;
     border-width: 0;
     background: none;
-    transition: opacity 1s;
+    transition: opacity 1s;    
     cursor: pointer;
     position: relative;
     display: flex;
 }
 
-.profile__avatar-button::hover {
+.profile__avatar-button:hover {
     opacity: 60%;
 }
 
 .profile__avatar-button-icon {
-    position: absolute;
     z-index: 1;
-    left: 40%;
-    top: 35%;
+    position: absolute;
+    /*left: 40%;
+    top: 35%;*/
+    left: -0.3%;
+    top: -1%; 
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
     height: 26px;
-    width: 26px;
+    width: 26px;    
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding: 40%;    
 }
 
-.profile__avatar {
-    border-radius: 10px;
+.profile__avatar-button-icon:hover {
+    opacity: 1;
 }
 
 @media screen and (max-width: 1170px) {
