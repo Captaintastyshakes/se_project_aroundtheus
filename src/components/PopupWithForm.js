@@ -12,11 +12,17 @@ export default class PopupWithForm extends Popup {
   }
 
   getInputValues() {//making public
-    this._userData = {};//trying making this a constructor property to be set by the set function
+    this._userData = {};
     this._inputs.forEach((input) => {
       this._userData[input.id] = input.value;
     });
     return this._userData;
+  }
+
+  setInputValues(data) {
+    this._inputs.forEach((input) => {
+      input.value = data[input.id];
+    });
   }
 
   setEventListeners() {

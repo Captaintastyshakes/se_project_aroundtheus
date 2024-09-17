@@ -15,11 +15,8 @@ export default class Api {
     }
 
     _request(url) {
-        return fetch(this._baseUrl + url, this._options).then(this._checkResponse)
-    }
-
-    _return(data) {
-        return data;
+        return fetch(this._baseUrl + url, this._options).then(this._checkResponse).finally(() => {this._reset()});
+        
     }
 
     _reset() {
@@ -28,16 +25,14 @@ export default class Api {
     }
 
     _fetchX = (endpoint, how) => {//new, condensed hotness
-        this._options.method = how;        
-        return this._request(endpoint).then(this._return)
-        .finally(() => {this._reset()});
+        this._options.method = how;
+        return this._request(endpoint);
     }
     
     _sendX = (endpoint, parcel, how) => {//new condensed hotness
         this._options.method = how;
         this._options.body = JSON.stringify(parcel);
-        return this._request(endpoint).then(this._return)
-        .finally(() => {this._reset()});
+        return this._request(endpoint);
     }
 
     //putting the root functions to task- these are all PUBLIC

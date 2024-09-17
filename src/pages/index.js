@@ -3,28 +3,25 @@
 import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import {
-  initialCards,//in case of emergencies
+import {  
   formValidators,
   editProfileButton,
   cardAddButton,
   editProfilePopup,
-  cardPreviewPopup,
-  nameField,
-  aboutMeField,
+  cardPreviewPopup,  
   config,  
   addPhotoPopup,
   userData,
   avatarButton,
   editAvatarPopup,
-  starterPack//'initial cards' or, at least, where I plan to store them.
+  avatarSelector
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import Api from "../components/Api.js";
-import PopupFormNoFields from "../components/PopupFormNoFields";
+import PopupFormNoFields from "../components/PopupFormNoFields.js";//totally whack that I missed labelling this file as js. Oh well...
 
 //variables
 
@@ -35,27 +32,14 @@ let deleteIdentification = ""; //I'm using this variable as storage for identify
 
 function fillProfileForm() {
   const {name, job} = user.getUserInfo();
-  nameField.value = name;
-  aboutMeField.value = job;
+  profilePopup.setInputValues({name, about_me: job});
+  
 }
 
 function handleEditProfileButtonClick() {
   profilePopup.open();
   fillProfileForm();
   formValidators["profile-form"].disableSubmitButton();
-}
-
-function loadApiCards() {//no longer used save as a part of the "emergency option" so holding on to just in case
-  api.getCards().then(data => {
-    data.forEach((datum) => (renderCard(datum)));
-  });
-}
-
-function restoreOriginalCards() {//in case I ever go nuclear on the cards again by accident... call on standby at the bottom
-  initialCards.forEach((card) => {
-    api.postCard(card);    
-  });
-  loadApiCards();
 }
 
 function handleDelButtonClick(card) {
@@ -69,29 +53,25 @@ function renderCard(card) {
   cardSection.addItem(newCardElement);
 }
 
-function handleDeleteSubmit() {//did this as a pass-to for the delete popup just because I was having such a difficult time workshopping how exactly to delete, needed to segregate it. Came up with this.
+function handleDeleteSubmit() {
+  deleteDialogue.renderLoading(true, "Deleting...");
   api.deleteCard(deleteIdentification.id)
   .then(() => {
-    deleteDialogue.renderLoading(true, "Deleting...");    
-    deleteIdentification.deleteElement();//I guess I was storing the to-be-deleted card all along and just needed to access it. WOW.
-    formValidators["delete-photo-form"].disableSubmitButton();
+    deleteIdentification.deleteElement();
+    //formValidators["delete-photo-form"].disableSubmitButton(); //I think commenting this out might be a mistake- so I'm just noting it out, not deleting
   })
-  .then(() => {
-    setTimeout(() => {
+  .then(() => {    
       deleteDialogue.close();
       deleteIdentification = "";
-      formValidators["delete-photo-form"].resetFormValidation();
-      deleteDialogue.renderLoading(false);
-    }, 1500);
   })
   .catch((err) => {
     console.log(err);
-    deleteDialogue.renderLoading(true, "Error while deleting! Please wait and try again!")
-    setTimeout(() => {
-      formValidators["delete-photo-form"].resetFormValidation();
-      deleteDialogue.renderLoading(false);
-    }, 1500);
-  })  
+    deleteDialogue.renderLoading(true, "Error while deleting! Please wait and try again!");
+  })
+  .finally(() => {
+    deleteDialogue.renderLoading(false);//really tempted to put these .finally blocks in a timeout just to see the renderLoading more clearly. Happens so quick
+    formValidators["delete-photo-form"].enableSubmitButton();
+  });
 }
 
 function handleEditAvatarClick() {
@@ -101,6 +81,10 @@ function handleEditAvatarClick() {
 function initializeProfileApi() {
   api.getUserInfo().then(data => {
     user.setUserInfo({newName: data.name, newJob: data.about});
+    user.setAvatar(data.avatar);
+  })
+  .catch((err) => {
+    console.log("Unable to load profile/avatar info! Please wait and try again. " + err);
   });
 }
 
@@ -155,92 +139,76 @@ const api = new Api({
   body: null
 });
 
-const user = new UserInfo(userData);
+const user = new UserInfo(userData, avatarSelector);
 
-const profilePopup = new PopupWithForm(editProfilePopup, {//new hotness
+const profilePopup = new PopupWithForm(editProfilePopup, {
   handleFormSubmit: ({ name, about_me }) => {
+    profilePopup.renderLoading(true, "Submitting profile changes...");
     api.patchInfo({name, about: about_me})
     .then( () => {
       user.setUserInfo({ newName: name, newJob: about_me });
-      profilePopup.renderLoading(true, "Submitting profile changes...");
       formValidators["profile-form"].disableSubmitButton();
     })
     .then( () => {
-      //profilePopup.close();
-      setTimeout(() => {
         profilePopup.close();
-        profilePopup.renderLoading(false);
-        formValidators["profile-form"].resetFormValidation();
-      }, 1500);
     })
     .catch( (err) => {
       console.log(err);
       profilePopup.renderLoading(true, "Error while changing profile info! Please wait and try again.");
-      setTimeout(() => {
-        profilePopup.renderLoading(false);
-        formValidators["profile-form"].resetFormValidation();
-      }, 1500)
+    })
+    .finally(() => {
+      profilePopup.renderLoading(false);     
+
     });
   },
 });
 
-const addPopup = new PopupWithForm(addPhotoPopup, {//new hotness
+const addPopup = new PopupWithForm(addPhotoPopup, {
   handleFormSubmit: ({ title, image_url: imageUrl }) => {
     const newObj = {
       name: title,
       link: imageUrl
     };
+    addPopup.renderLoading(true, "Creating and adding card...");
     api.postCard(newObj)
     .then((data) => {
       renderCard(data);
-      console.log("IT GOT THIS FAR.");
-      addPopup.renderLoading(true, "Creating and adding card...");
       formValidators["add-photo-form"].disableSubmitButton();
     })    
     .then(() => {
-      //addPopup.close();
-      setTimeout(() => {
         addPopup.close();
-        formValidators["add-photo-form"].resetFormValidation();
         formValidators["add-photo-form"].clearInputs();
-        addPopup.renderLoading(false);
-      }, 1500);
+        formValidators["add-photo-form"].resetFormValidation();//keeping this active- this makes it so that the save button stays grayed out once you have submitted a card and open the popup again. I know the validation prevents creation of an invalid card but this seems sensible to me
     })
     .catch((err) => {
       addPopup.renderLoading(true, "Error while creating card! Please wait and try again.");
       console.log(err);
-      setTimeout(() => {
-        addPopup.renderLoading(false);
-        formValidators["add-photo-form"].resetFormValidation();
-      }, 1500)
     })
+    .finally(() => {
+      addPopup.renderLoading(false);
+    });
   },
 });
 
-const cardSection = new Section({items: starterPack, renderer: renderCard}, ".cards");//I know the array is still empty but I fill it later
+const cardSection = new Section({renderer: renderCard}, ".cards");
 
-const avatarPopup = new PopupWithForm(editAvatarPopup, {handleFormSubmit: ({avatarUrl}) => {//folding into api model
+const avatarPopup = new PopupWithForm(editAvatarPopup, {handleFormSubmit: ({avatarUrl}) => {
+  avatarPopup.renderLoading(true, "Changing avatar...");
   api.patchAvatar({avatar: avatarUrl})
   .then(() => {
-    avatarPopup.renderLoading(true, "Changing avatar...");
     user.setAvatar(avatarUrl);
     formValidators["avatar-form"].disableSubmitButton();
   })
   .then(() => {
-    setTimeout(() => {
-      formValidators["avatar-form"].resetFormValidation();
       avatarPopup.close();
-      avatarPopup.renderLoading(false);
       formValidators["avatar-form"].clearInputs();
-    }, 1500);
   })
   .catch((err) => {
     console.log(err);
     avatarPopup.renderLoading(true, "Error while changing avatar! Please wait and try again");
-    setTimeout(() => {
-      formValidators["avatar-form"].resetFormValidation();
-      avatarPopup.renderLoading(false);
-    }, 1500);
+  })
+  .finally(() => {
+    avatarPopup.renderLoading(false);
   });
 }});
 
@@ -250,20 +218,9 @@ const imageBox = new PopupWithImage(cardPreviewPopup);
 
 //calls
 
-//getting the avatar image loaded
-api.getUserInfo()
+api.getCards()//modified the card section to just take whatever array I give it, including the data from a fetch request
 .then((data) => {
-  user.setAvatar(data.avatar);
-})
-.catch((err) => {
-  console.log("Unable to load avatar image! Please wait and try again. " + err);
-});
-
-//loading up cards into the array that the Card section draws from and then rendering them.
-api.getCards()
-.then((data) => {
-  starterPack.push(data);
-  cardSection.renderItems();
+  cardSection.renderItems(data);
 })
 .catch((err) => {
   console.log("Error while loading cards! Please try again later. " + err);
@@ -288,5 +245,3 @@ imageBox.setEventListeners();
 cardAddButton.addEventListener("click", handleAddButtonClick);
 
 enableValidation(config);
-
-//restoreOriginalCards(); //CRACK GLASS IN CASE OF EMERGENCY. Resets all cards to their original values.

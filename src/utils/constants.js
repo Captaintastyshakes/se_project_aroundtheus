@@ -79,4 +79,4 @@ userData = {
 
 export const avatarButton = document.querySelector(".profile__avatar-button");
 export const editAvatarPopup = ".avatar-popup";
-export const starterPack = [];
+export const avatarSelector = "#avatar";
