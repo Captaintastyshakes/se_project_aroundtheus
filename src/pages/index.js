@@ -58,7 +58,6 @@ function handleDeleteSubmit() {
   api.deleteCard(deleteIdentification.id)
   .then(() => {
     deleteIdentification.deleteElement();
-    //formValidators["delete-photo-form"].disableSubmitButton(); //I think commenting this out might be a mistake- so I'm just noting it out, not deleting
   })
   .then(() => {    
       deleteDialogue.close();
@@ -69,7 +68,7 @@ function handleDeleteSubmit() {
     deleteDialogue.renderLoading(true, "Error while deleting! Please wait and try again!");
   })
   .finally(() => {
-    deleteDialogue.renderLoading(false);//really tempted to put these .finally blocks in a timeout just to see the renderLoading more clearly. Happens so quick
+    deleteDialogue.renderLoading(false);
     formValidators["delete-photo-form"].enableSubmitButton();
   });
 }
@@ -178,7 +177,6 @@ const addPopup = new PopupWithForm(addPhotoPopup, {
     .then(() => {
         addPopup.close();
         formValidators["add-photo-form"].clearInputs();
-        formValidators["add-photo-form"].resetFormValidation();//keeping this active- this makes it so that the save button stays grayed out once you have submitted a card and open the popup again. I know the validation prevents creation of an invalid card but this seems sensible to me
     })
     .catch((err) => {
       addPopup.renderLoading(true, "Error while creating card! Please wait and try again.");
@@ -218,7 +216,7 @@ const imageBox = new PopupWithImage(cardPreviewPopup);
 
 //calls
 
-api.getCards()//modified the card section to just take whatever array I give it, including the data from a fetch request
+api.getCards()
 .then((data) => {
   cardSection.renderItems(data);
 })

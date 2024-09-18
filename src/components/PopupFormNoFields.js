@@ -12,9 +12,9 @@ export default class PopupFormNoFields extends Popup {
 
 
 setEventListeners() {
+    super.setEventListeners();
     this._popupForm.addEventListener("submit", () => {
         this._handleFormSubmit();
-        super.setEventListeners();
     });
 }
 
