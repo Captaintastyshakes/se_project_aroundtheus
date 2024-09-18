@@ -1,28 +1,35 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor({ name, link, _id, isLiked}, cardSelector, handleImageClick, handleDeleteClick, handleLikeClick) {
     this.name = name; //making these two properties public since I use them in the handlephotoclick function
     this.link = link; //
     this._cardSelector = cardSelector;
-    this._handleImageClick = handleImageClick;
+    this._handleImageClick = handleImageClick;    
+    this._handleDeleteClick = handleDeleteClick;
+    this.id = _id;
+    this.isLiked = isLiked;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _setEventListeners() {
-    this._cardLikeButton.addEventListener("click", () => {
-      this._handleLikeClick();
+    this.cardLikeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
     });
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDeleteClick();
+      this._handleDeleteClick(this);
     });
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick(this);
-    });
+    });    
   }
 
-  _handleLikeClick() {
-    this._cardLikeButton.classList.toggle("card__like-button_active");
+  _checkLike() {
+    if (this.isLiked == true) {
+      this.cardLikeButton.classList.add("card__like-button_active");
+      return this.isLiked;
+    }
   }
 
-  _handleDeleteClick() {
+  deleteElement() {//making public, changed from handledeleteclick
     this._cardElement.remove();
     this._cardElement = null;
   }
@@ -31,6 +38,7 @@ export default class Card {
     this._cardImage.src = this.link;
     this._cardImage.alt = this.name;
     this._cardTitle.textContent = this.name;
+    this._checkLike();
   }
 
   generateCardElement() {
@@ -39,7 +47,7 @@ export default class Card {
       .content.querySelector(".cards__card")
       .cloneNode(true);
     //defining other class variables here to call in child functions
-    this._cardLikeButton = this._cardElement.querySelector(
+    this.cardLikeButton = this._cardElement.querySelector(//making public
       ".cards__like-button"
     );
     this._cardDeleteButton = this._cardElement.querySelector(
@@ -48,7 +56,19 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector(".cards__image");
     this._cardTitle = this._cardElement.querySelector(".cards__title");
     this._setEventListeners();
-    this._setCardProperties();
+    this._setCardProperties();    
     return this._cardElement;
   }
+
+  toggleLike() {//to contain like logic in the card
+    if (!this.cardLikeButton.classList.contains("card__like-button_active"))
+    {      
+      this.cardLikeButton.classList.add("card__like-button_active");
+      this.isLiked = true;
+    }
+    else {
+      this.cardLikeButton.classList.remove("card__like-button_active");
+      this.isLiked = false;
+    }
+  }  
 }

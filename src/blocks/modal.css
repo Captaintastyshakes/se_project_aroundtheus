@@ -172,6 +172,16 @@
     display: flex;
 }
 
+#avatar-form {
+    max-height: 272px;
+}
+
+#delete-form {
+    max-height: 181px;
+}
+
+
+
 @media screen and (max-width: 890px) {
 
     .modal__box {
@@ -229,5 +239,6 @@
         text-align: center;
         padding-bottom: 10px;
         padding-top: 10px;
+        width: 100%;
     }
 }

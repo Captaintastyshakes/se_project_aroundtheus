@@ -56,6 +56,10 @@ export const nameField = document.querySelector(".modal__input");
 
 export const aboutMeField = document.querySelector("#about_me");
 
+export const deleteConfirmPopup = ".delete-popup";
+
+export const deleteButtons = Array.from(document.querySelectorAll(".cards__delete-button"));
+
 export const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -70,5 +74,9 @@ export const modalBoxes = Array.from(document.querySelectorAll(".modal__box"));
 export let userData = {};
 userData = {
   name: ".profile__name",
-  job: ".profile__occupation",
+  job: ".profile__occupation"
 };
+
+export const avatarButton = document.querySelector(".profile__avatar-button");
+export const editAvatarPopup = ".avatar-popup";
+export const avatarSelector = "#avatar";

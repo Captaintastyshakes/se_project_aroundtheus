@@ -58,7 +58,7 @@ export default class FormValidator {
     if (this.inputElements.some(this._hasInvalidInput)) {
       this.disableSubmitButton();
     } else {
-      this._enableSubmitButton();
+      this.enableSubmitButton();
     }
   }
 
@@ -72,7 +72,7 @@ export default class FormValidator {
     return (this._submitButton.disabled = true);
   }
 
-  _enableSubmitButton() {
+  enableSubmitButton() {//making public so I can utilize this where need be
     this._submitButton.classList.remove(this._inactiveButtonClass);
     return (this._submitButton.disabled = false);
   }
@@ -86,5 +86,11 @@ export default class FormValidator {
 
   test() {//in case I need to see how this is being loaded/passed/treated
     console.log(this);
+  }
+
+  clearInputs() {//adding this to clear when submitting some fields, and perhaps not others
+    this.inputElements.forEach((input) => {
+      input.value = "";
+    });
   }
 }
