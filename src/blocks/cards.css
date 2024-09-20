@@ -113,7 +113,6 @@
         grid-template-columns: 100%;
         grid-template-rows: repeat(6, 1fr);
         grid-auto-flow: column;
-        justify-content: center;
         align-items: center;
         padding-left: 0;
         padding-right: 0;
